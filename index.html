@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/small-business.css" rel="stylesheet">
+  <link href="css/site-style.css" rel="stylesheet">
 
 </head>
 
@@ -30,9 +30,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"> Kontakt
+            <button class=" btn btn-primary" type="button" onclick="loadContact()"> Kontakt
               <span class="sr-only">(current)</span>
-            </a>
+            </button>
           </li>
           <!-- <li class="nav-item"> -->
             <!-- <a class="nav-link" href="#">About</a> -->
@@ -67,11 +67,14 @@
     <!-- /.row -->
 
     <!-- Call to Action Well -->
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-      <div class="card-body">
-        <p class="text-white m-0">Work in progress!</p>
-      </div>
+    <div id="MainContent">
+        <div class="card bg-secondary my-4 py-1 text-center">
+            <div class="crop">
+                <img style="width:100%" src="./images/work_in_progress.gif" alt="">
+            </div>
+        </div>
     </div>
+
 
     <!-- Content Row -->
     <div class="row">
@@ -129,7 +132,11 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script>
+    function loadContact() {
+        $('#MainContent').load("./contact.html");
+    }
+</script>
 </body>
 
 </html>
