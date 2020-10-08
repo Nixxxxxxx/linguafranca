@@ -2,6 +2,78 @@ body {
     padding-top: 56px;
 }
 
+
+:root {
+    --main-bg0: #B2DFDB;
+    --main-bg100: #80CBC4;
+    --main-bg200: #4DB6AC;
+    --main-bg300: #26A69A;
+    --main-bg400: #009688;
+    --main-bg500: #00897B;
+    --main-bg600: #00796B;
+    --main-bg700: #00695C;
+    --main-bg800: #00838F;
+    --main-bg900: #004D40;
+}
+
+
+.bg100{
+    background-color : var(--main-bg100);
+}
+
+.bg200{
+    background-color : var(--main-bg200);
+}
+.bg600{
+    background-color : var(--main-bg600);
+}
+
+.C100{
+    color : var(--main-bg100);
+}
+
+.C600{
+    color : var(--main-bg600);
+}
+
+.C900{
+    color : var(--main-bg900);
+}
+
+
+.home_icon {
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    z-index: 100;
+    opacity: 0;
+}
+
+.pcursor {
+    cursor: pointer;
+}
+
+.cWhite{
+    color:white;
+}
+
+
+
+#Main_NavBar {
+    transition: opacity 1.1s ease-in-out;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.header {
+    font-size: 32px;
+    font-style: oblique;
+}
+
 .crop {
     position: relative;
     width: 100%;
@@ -18,17 +90,30 @@ body {
 }
 
 .img_termine {
-    height: 150px;
+    height: 100%;
     width: 100%;
+    padding: 2%;
 }
 
 .card_termine {
+    background-color: #FAFAFA;
+    border-radius: 5% 2%;
     transition: 0.5s;
     cursor: pointer;
 }
 
+.card_termine_old {
+ filter: blur(2px);
+}
+
+.card_termine_old:hover {
+ filter: blur(0px);
+}
+
 .card_termine-title {
-    font-size: 15px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: underline;
     transition: 1s;
     cursor: pointer;
 }
@@ -37,24 +122,29 @@ body {
     font-size: 15px;
     transition: 1s;
     cursor: pointer;
-    color: #ffa710
+    color: #18d4ca;
 }
 
 .card_termine-title i:hover {
     transform: scale(1.25) rotate(100deg);
-    color: #18d4ca;
+    color: #ff0000 ;
 }
 
-.card_termine:hover {
+.card_termine:hover, .content_card:hover {
     transform: scale(1.05);
+    transition: transform .5s ease-out 0.3s;
+    /*background-color: var(--main-bg100);*/
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
 }
 
+
 .card_termine-text {
     height: 80px;
+    text-align: center;
 }
 
-.card_termine::before, .card_termine::after {
+
+/*.card_termine::before, .card_termine::after {
     position: absolute;
     top: 0;
     right: 0;
@@ -65,8 +155,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     content: '';
     pointer-events: none;
-}
-
+}*/
 .card_termine::before {
     transform-origin: left top;
 }
@@ -78,3 +167,87 @@ body {
 .card_termine:hover::before, .card_termine:hover::after, .card_termine:focus::before, .card_termine:focus::after {
     transform: scale3d(1, 1, 1);
 }
+
+
+
+
+
+
+
+.date-as-calendar {
+    float: left;
+    font-variant: normal;
+    font-style: normal;
+    font-weight: normal;
+    font-family: Arial;
+    vertical-align: top;
+    color: var(--main-bg900);
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0px 2px 2px -2px black;
+}
+
+    .date-as-calendar .weekday,
+    .date-as-calendar .day,
+    .date-as-calendar .month,
+    .date-as-calendar .year,
+    .date-as-calendar .time {
+        text-align: center;
+        line-height: 1.0;
+    }
+
+    .date-as-calendar .month {
+        font-family: Arial;
+        text-transform: uppercase;
+        background: #F03020;
+        color: #F0F0F0;
+    }
+
+.position-pixels.date-as-calendar {
+    display: block;
+    position: absolute;
+    top: 0px;
+    width: 70px;
+    height: 80px;
+}
+
+    .position-pixels.date-as-calendar .weekday,
+    .position-pixels.date-as-calendar .day,
+    .position-pixels.date-as-calendar .month,
+    .position-pixels.date-as-calendar .year,
+    .position-pixels.date-as-calendar .time {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 1em;
+    }
+
+    .position-pixels.date-as-calendar .month {
+        top: 0px;
+        font-size: 10px;
+        padding: 2px 0;
+    }
+
+    .position-pixels.date-as-calendar .weekday {
+        top: 16px;
+        font-size: 10px;
+    }
+
+    .position-pixels.date-as-calendar .day {
+        top: 26px;
+        font-size: 24px;
+    }
+
+    .position-pixels.date-as-calendar .year {
+        top: 50px;
+        font-size: 14px;
+    }
+
+    .position-pixels.date-as-calendar .time {
+        top: 66px;
+        font-size: 12px;
+    }
+

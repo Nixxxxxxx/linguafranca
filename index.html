@@ -14,28 +14,37 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap core CSS -->
+
+    <!-- CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Custom styles -->
     <link href="css/site-style.css" rel="stylesheet">
 
 </head>
 
 <body>
 
+    <img id="home_icon" class="home_icon" src="./images/home_icon.png" alt="home icon" onclick="loadMainContent()"/>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav id="Main_NavBar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <span class="navbar-brand p-2 rounded" type="button" onclick="loadMainContent()"><sup>Lingua</sup>-<sub>Franca</sub></span>
+            <span class="navbar-brand p-2 rounded underline header" type="button" onclick="loadMainContent()"><sup class="C600">Lingua</sup><sub class="C100">Franca</sub></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <button class=" btn btn-primary" type="button" onclick="loadContact()">
+
+                    <li class="nav-item mx-2">
+                        <button class=" btn bg100" type="button" onclick="">
+                            Impressum
+                        </button>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <button class=" btn bg100" type="button" onclick="loadContact()">
                             Kontakt
-                            <span class="sr-only">(current)</span>
                         </button>
                     </li>
                     <!-- <li class="nav-item"> -->
@@ -58,13 +67,15 @@
         <!-- Heading Row -->
         <div class="row align-items-center my-5">
             <div class="col-lg-7">
-                <img class="img-fluid rounded mb-4 mb-lg-0" style="width:100%" src="./images/banner.jpg" alt="">
+                <a href="https://www.rowohlt.de/paperback/franca-parianen-hormongesteuert-ist-immerhin-selbstbestimmt.html"> <img class="img-fluid rounded mb-4 mb-lg-0" style="width:100%" src="./images/banner.jpg" alt=""> </a>
             </div>
             <!-- /.col-lg-8 -->
             <div class="col-lg-5">
                 <h1 class="font-weight-light">Die Hirn &amp; Hormon Frau</h1>
                 <p>Noch Fragen? Immer her damit!</p>
-                <a class="btn btn-primary" href="https://twitter.com/FParianen">Go to Twitter!</a>
+                <a class="btn" style="Background:#29B6F6" href="https://twitter.com/FParianen">
+                    <span style="color:#FFF">Twitter</span> <i class="fa fa-twitter" style="font-size:24px; color: white;"></i>
+                </a>
             </div>
             <!-- /.col-md-4 -->
         </div>
@@ -76,7 +87,7 @@
     </div>
     <!-- /.container -->
     <!-- Footer -->
-    <footer class="mt-3 py-5 bg-dark">
+    <footer class="mt-2 py-2 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Lingua-franca.eu</p>
         </div>
@@ -100,6 +111,20 @@
         function loadTermine() {
             $('#MainContent').load("./termine.html");
         }
+
+        function amountscrolled() {
+            if ($(window).scrollTop() < 120) {
+                $('#Main_NavBar').css('opacity', '1');
+                $('#home_icon').css('opacity', '0');
+            } else {
+                $('#Main_NavBar').css('opacity', '0');
+                $('#home_icon').css('opacity', '1');
+            }
+        }
+
+        $(window).on("scroll", function () {
+            amountscrolled()
+        })
     </script>
 </body>
 

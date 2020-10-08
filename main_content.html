@@ -7,37 +7,41 @@
 <!-- Content Row -->
 <div class="row">
     <div class="col-md-4 mb-5">
-        <div class="card h-100">
-            <div class="card-body">
-                <h2 class="card-title">Aktuell</h2>
-                <p class="card-text">Medien &amp; Termine</p>
+        <div class="card h-100 content_card">
+            <div class="card-body ">
+                <h2 onclick="loadTermine()" class="card-title underline C900 pcursor">Aktuell</h2>
+                <p class="card-text  text-center">Medien &amp; Termine</p>
             </div>
-            <div class="card-footer">
-                <a href="#" onclick="loadTermine()" class="btn btn-primary btn-sm">Mehr Info</a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-md-4 -->
-    <div class="col-md-4 mb-5">
-        <div class="card h-100">
-            <div class="card-body">
-                <h2 class="card-title">Bücher</h2>
-                <p class="card-text">Woher soll ich wissen, was ich denke, bevor ich hoere, was ich sage @Rowohlt</p>
-            </div>
-            <div class="card-footer">
-                <a href="https://www.rowohlt.de/paperback/franca-parianen-hormongesteuert-ist-immerhin-selbstbestimmt.html" class="btn btn-primary btn-sm">Mehr Info</a>
+            <div class="card-footer bg100 m-1">
+                <button onclick="loadTermine()" class="btn bg600 btn-sm  float-right cWhite">Mehr Info</button>
             </div>
         </div>
     </div>
     <!-- /.col-md-4 -->
     <div class="col-md-4 mb-5">
-        <div class="card h-100">
+        <div class="card h-100 content_card">
             <div class="card-body">
-                <h2 class="card-title">Blog</h2>
-                <p class="card-text">Hormone und Alles.</p>
+                <a href="https://www.rowohlt.de/paperback/franca-parianen-hormongesteuert-ist-immerhin-selbstbestimmt.html" class="C900">
+                    <h2 class="card-title underline">Bücher</h2>
+                </a>
+                <p class="card-text text-center">Woher soll ich wissen, was ich denke, bevor ich hoere, was ich sage @Rowohlt</p>
             </div>
-            <div class="card-footer">
-                <a href="#" class="btn btn-primary btn-sm">Mehr Info</a>
+            <div class="card-footer bg100 m-1">
+                <a href="https://www.rowohlt.de/paperback/franca-parianen-hormongesteuert-ist-immerhin-selbstbestimmt.html" class="btn bg600 btn-sm float-right cWhite">Mehr Info</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4 mb-5">
+        <div class="card h-100 content_card">
+            <div class="card-body">
+                <a href="#" class="C900">
+                    <h2 class="card-title underline">Blog</h2>
+                </a>
+                <p class="card-text  text-center">Hormone und Alles.</p>
+            </div>
+            <div class="card-footer bg100 m-1">
+                <a href="#" class="btn bg600 btn-sm  float-right cWhite">Mehr Info</a>
             </div>
         </div>
     </div>
