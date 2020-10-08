@@ -216,6 +216,7 @@ body {
         text-transform: uppercase;
         background: #F03020;
         color: #F0F0F0;
+        line-height: 0.8;
     }
 
 .position-pixels.date-as-calendar {
@@ -228,7 +229,6 @@ body {
 
     .position-pixels.date-as-calendar .weekday,
     .position-pixels.date-as-calendar .day,
-    .position-pixels.date-as-calendar .month,
     .position-pixels.date-as-calendar .year,
     .position-pixels.date-as-calendar .time {
         display: block;
@@ -238,6 +238,20 @@ body {
         width: 100%;
         height: 1em;
     }
+
+.date-as-calendar .month {
+    font-family: Arial;
+    text-transform: uppercase;
+    background: #F03020;
+    color: #F0F0F0;
+    line-height: 0.8;
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1.2em;
+}
 
     .position-pixels.date-as-calendar .month {
         top: 0px;
