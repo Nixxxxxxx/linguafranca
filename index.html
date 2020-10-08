@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="./images/icon.png">
 
     <title>Lingua-Franca</title>
 
@@ -37,7 +38,7 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item mx-2">
-                        <button class=" btn bg100" type="button" onclick="">
+                        <button class=" btn bg100" type="button" onclick="loadImpressum()">
                             Impressum
                         </button>
                     </li>
@@ -107,6 +108,9 @@
 
         function loadContact() {
             $('#MainContent').load("./contact.html");
+        }
+        function loadImpressum() {
+            $('#MainContent').load("./impressum.html");
         }
         function loadMainContent() {
             $('#MainContent').load("./main_content.html", function () {
