@@ -6,21 +6,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.2.46/jodit.min.js"></script>
 </head>
 <body>
-    Name: <input type="text" id="myText" value="Blog">
-    <button onclick="myFunction()">Try it</button>
+    <input id="fileName" type="text" value="Enter something">
+    <input type="button" value="Save File" onclick="msg()">
+
     <br />
 
     <textarea id="editor" name="editor" style="width=100%; height=100%"></textarea>
     <script>
         var editor = new Jodit('#editor');
         editor.value = '<p>Write the World</p>';
-
-        function myFunction() {
-         val filename =    document.getElementById("myText").value;
-            alert("Hello world! " + filename);
-
-        }
-
+        var filename = document.getElementById("#fileName").value
         function msg() {
             alert("Hello world! " + filename);
         }
