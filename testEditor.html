@@ -16,7 +16,7 @@
         var editor = new Jodit('#editor');
         editor.value = '<p>Write the World</p>';
         function msg() {
-            alert("Hello world! " + filename);
+            // alert("Hello world! " + filename);
             var filename = document.getElementById("fileName").value
             var fileContent = document.getElementById("editor").value
             var blob = new Blob([fileContent], { type: 'text/plain' });
