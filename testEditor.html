@@ -1,0 +1,18 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>Editor Test</title>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.2.46/jodit.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.2.46/jodit.min.js"></script>
+</head>
+<body>
+
+	<h1>This is a heading</h1>
+	<p>This is a paragraph.</p>
+	<textarea id="editor" name="editor"></textarea>
+</body>
+<script>
+var editor = new Jodit('#editor');
+editor.value = '<p>start</p>';
+</script>
+</html> 
