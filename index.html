@@ -24,53 +24,26 @@
 </head>
 
 <body>
-
-    <h2><span id="app_name" class="navbar-brand p-2 rounded underline header" type="button" onclick="loadMainContent()"><sup class="C600">Lingua</sup><sub class="C100">Franca</sub></span></h2>
-    <button class="btn-nav btn bg100" type="button" onclick="loadImpressum()">Impressum</button>
-    <button class="btn-nav btn bg100" type="button" onclick="loadContact()"> Kontakt </button>
     <img id="home_icon" class="home_icon" src="./images/home_icon.png" alt="home icon" onclick="loadMainContent()" />
-    <!-- Navigation -->
-    <!--<nav id="Main_NavBar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-
-                    <li class="nav-item mx-2">
-
-                    </li>
-                    <li class="nav-item mx-2">
-
-                    </li>-->
-                    <!-- <li class="nav-item"> -->
-                    <!-- <a class="nav-link" href="#">About</a> -->
-                    <!-- </li> -->
-                    <!-- <li class="nav-item"> -->
-                    <!-- <a class="nav-link" href="#">Services</a> -->
-                    <!-- </li> -->
-                    <!-- <li class="nav-item"> -->
-                    <!-- <a class="nav-link" href="#">Contact</a> -->
-                    <!-- </li> -->
-                <!--</ul>
-            </div>
-        </div>
-    </nav>-->
-
     <!-- Page Content -->
     <div class="container-fluid">
+        <div class="row">
+            <h2 class="col-md-3"><span id="app_name" class="navbar-brand p-2 rounded underline header" type="button" onclick="loadMainContent()"><sup class="C600">Lingua</sup><sub class="C100">Franca</sub></span></h2>
+            <div class="col-md-7"></div>
+            <div class="col-md-1 p-1"> <button class="btn-nav btn bg100" type="button" onclick="loadImpressum()">Impressum</button></div> 
+            <div class="col-md-1 p-1"> <button class="btn-nav btn bg100" type="button" onclick="loadContact()"> Kontakt </button></div> 
+        </div>
         <br />
         <!-- Heading Row -->
         <div class="row align-items-center my-5">
-            <div class="col-lg-7 col-md-7 col-sm-7">
+            <div class="col-lg-7 col-md-12 col-sm-12">
                 <a href="https://www.rowohlt.de/paperback/franca-parianen-hormongesteuert-ist-immerhin-selbstbestimmt.html">
                     <img class="img-fluid rounded mb-4 mb-lg-0" style="width:100%" src="./images/banner.jpg" alt="">
                 </a>
             </div>
             <!-- /.col-lg-8 -->
-            <div class="col-lg-5 col-md-5 col-sm-5">
-                <h1 class="font-weight-light">Die Hirn &amp; Hormon Frau</h1>
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <h1 class="">Die Hirn &amp; Hormon Frau</h1>
                 <p>Noch Fragen? Immer her damit!</p>
                 <a class="btn" style="Background:#29B6F6" href="https://twitter.com/FParianen">
                     <span style="color:#FFF">Twitter</span> <i class="fa fa-twitter" style="font-size:24px; color: white;"></i>
