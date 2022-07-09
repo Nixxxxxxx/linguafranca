@@ -1,5 +1,5 @@
 body {
-    padding-top: 56px;
+    padding-top: 15px;
 }
 
 
@@ -59,10 +59,21 @@ body {
     color:white;
 }
 
-
+#app_name {
+    position:absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
 
 #Main_NavBar {
     transition: opacity 1.1s ease-in-out;
+}
+
+.btn-nav{
+    position: relative;
+    float: right;
+    margin: 20px;
 }
 
 .underline {
@@ -72,6 +83,7 @@ body {
 .header {
     font-size: 32px;
     font-style: oblique;
+    font-weight:900;
 }
 
 .crop {
