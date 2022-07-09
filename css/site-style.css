@@ -141,7 +141,7 @@ body {
     transform: scale(1.5);
     transition: transform .5s ease-out 0.3s;
     /*background-color: var(--main-bg100);*/
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.4);
 }
 
 
@@ -152,7 +152,7 @@ body {
 
 .card_content_img {
     width: 30%;
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.2);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
 }
 .buch_container {
     display: flex;
