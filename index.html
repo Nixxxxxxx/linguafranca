@@ -27,11 +27,11 @@
     <img id="home_icon" class="home_icon" src="./images/home_icon.png" alt="home icon" onclick="loadMainContent()" />
     <!-- Page Content -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row text-center">
             <h2 class="col-md-3"><span id="app_name" class="navbar-brand p-2 rounded underline header" type="button" onclick="loadMainContent()"><sup class="C600">Lingua</sup><sub class="C100">Franca</sub></span></h2>
             <div class="col-md-7"></div>
-            <div class="col-md-1 p-1"> <button class="btn-nav btn bg100" type="button" onclick="loadImpressum()">Impressum</button></div> 
-            <div class="col-md-1 p-1"> <button class="btn-nav btn bg100" type="button" onclick="loadContact()"> Kontakt </button></div> 
+            <div class="col-md-1 p-1 d-none d-md-block"> <button class="btn-nav btn bg100" type="button" onclick="loadImpressum()">Impressum</button></div>
+            <div class="col-md-1 p-1 d-none d-md-block"> <button class="btn-nav btn bg100" type="button" onclick="loadContact()"> Kontakt </button></div>
         </div>
         <br />
         <!-- Heading Row -->
@@ -55,6 +55,11 @@
         <!-- Call to Action Well -->
         <div id="MainContent">
 
+        </div>
+
+        <div class="row text-center d-md-none">
+            <button class="btn-nav btn bg100 col-sm-6 m-1" type="button" onclick="loadImpressum()">Impressum</button>
+            <button class="btn-nav btn bg100 col-sm-6 m-1" type="button" onclick="loadContact()"> Kontakt </button>
         </div>
     </div>
     <!-- /.container -->
