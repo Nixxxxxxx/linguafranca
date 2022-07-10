@@ -129,9 +129,6 @@ body {
     color: #ff0000 ;
 }
 
-.card {
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-}
 
 .card_termine:hover, .content_card:hover {
     transform: scale(1.05);
@@ -283,3 +280,8 @@ body {
         font-size: 12px;
     }
 
+
+
+.content_card {
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
