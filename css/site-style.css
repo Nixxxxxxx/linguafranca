@@ -129,11 +129,15 @@ body {
     color: #ff0000 ;
 }
 
+.content_card {
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+
 .card_termine:hover, .content_card:hover {
     transform: scale(1.05);
     transition: transform .5s ease-out 0.3s;
     /*background-color: var(--main-bg100);*/
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.4);
 }
 
 .card_content_img:hover {
