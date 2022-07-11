@@ -33,6 +33,14 @@ body {
     color : var(--main-bg100);
 }
 
+.C200{
+    color : var(--main-bg200);
+}
+
+.C500{
+    color : var(--main-bg500);
+}
+
 .C600{
     color : var(--main-bg600);
 }
@@ -70,8 +78,7 @@ body {
 
 .header {
     font-size: 32px;
-    font-style: oblique;
-    font-weight:900;
+    font-style:italic;
 }
 
 .crop {
