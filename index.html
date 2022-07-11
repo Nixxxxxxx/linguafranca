@@ -24,12 +24,14 @@
 </head>
 
 <body>
-    <img id="home_icon" class="home_icon" src="./images/home_icon.png" alt="home icon" onclick="loadMainContent()" />
+    <footer id="home_icon" class="mt-2 py-2 bg-dark footer home_icon">
+            <p class="m-0 text-center text-white">Copyright &copy; Lingua-franca.eu</p>
+    </footer>
     <!-- Page Content -->
     <div class="container-fluid">
         <div class="row text-center">
             <div class="col-md-3 text-left">
-            <span id="app_name" class="navbar-brand p-2 rounded underline" type="button" onclick="loadMainContent()"><sup class="C100">Lingua</sup><sub class="C900 header">Franca</sub></span>
+                <span id="app_name" class="navbar-brand p-2 rounded underline" type="button" onclick="loadMainContent()"><sup class="C100">Lingua</sup><sub class="C900 header">Franca</sub></span>
             </div>
             <div class="col-md-6"></div>
             <div class="col-md-1 p-1 d-none d-md-block"> <button class="btn-nav btn bg100" type="button" onclick="loadImpressum()">Impressum</button></div>
@@ -39,7 +41,7 @@
         <!-- Heading Row -->
         <div class="row align-items-center my-5">
             <div class="col-lg-6 col-md-12 col-sm-12">
-                    <img class="img-fluid rounded mb-4 mb-lg-0 banner" style="width:100%" src="./images/banner.jpg"  onclick="loadMainContent()" alt="banner image">
+                <img class="img-fluid rounded mb-4 mb-lg-0 banner" style="width:100%" src="./images/banner.jpg" onclick="loadMainContent()" alt="banner image">
             </div>
             <!-- /.col-lg-8 -->
             <div class="col-lg-6 col-md-12 col-sm-12 text-center text-white">
@@ -73,13 +75,6 @@
     </div>
     <!-- /.container -->
     <!-- Footer -->
-    <footer class="mt-2 py-2 bg-dark footer">
-        <div class="container-fluid">
-            <p class="m-0 text-center text-white">Copyright &copy; Lingua-franca.eu</p>
-        </div>
-        <!-- /.container -->
-    </footer>
-
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
