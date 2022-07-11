@@ -1,6 +1,6 @@
 body {
     padding-top: 5px;
-    background-color: #AEDFF3
+    background-color: #009688
 }
 
 
@@ -292,4 +292,9 @@ body {
 
 .content_card, .banner {
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+
+.footer{
+    position:fixed;
+    bottom: 0px;
 }
