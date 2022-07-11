@@ -56,9 +56,10 @@ body {
 .home_icon {
     position: fixed;
     bottom: 5px;
-    right: 51%;
+    width: 100%;
     z-index: 100;
     opacity: 0;
+    text-align:center;
 }
 
 .pcursor {
