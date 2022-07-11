@@ -28,6 +28,9 @@ body {
 .bg600{
     background-color : var(--main-bg600);
 }
+.bg900{
+    background-color : var(--main-bg900);
+}
 
 .C100{
     color : var(--main-bg100);
