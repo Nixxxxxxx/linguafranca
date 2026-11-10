@@ -65,6 +65,12 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   (Simple Icons paths, inline SVG). JSON-LD sameAs updated, twitter:site/creator meta removed, `rel="me"` link to Mastodon
   added (lets her add parianen.com as a verified link in her Mastodon profile). Pushed 2026-11-10 (user OK).
 
+- 2026-11-10 Vorträge: added Coaching '27 DBVC-Kongress Erfurt (16 Apr 2027, keynote, title not published yet; logo
+  images/logos/dbvc-coaching27.png) and 6. Deutscher Fußverkehrskongress Bielefeld (29 Sep 2026, Science Slam "Warum Menschen
+  zusammenhalten müssen, aber nicht wollen (auch im Straßenverkehr)"; text badge because fuko.nrw.de only uses the NRW
+  coat of arms, which is not free to use). Sources: kongress.dbvc.de/dr-franca-parianen/, fuko.nrw.de/referierende/.
+  Pushed 2026-11-10 (user OK).
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.

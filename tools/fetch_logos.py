@@ -18,6 +18,9 @@ COMMONS = "https://commons.wikimedia.org/wiki/Special:FilePath/{}?width=480"  # 
 
 LOGOS = {
     # Vorträge
+    "dbvc-coaching27": "https://kongress.dbvc.de/wp-content/uploads/2026/09/logo_dbvc_komplett_farbe_4x_RGB.png",
+    # fuko.nrw.de (Deutscher Fußverkehrskongress) only has the NRW state coat of arms as a logo, which may not be
+    # used freely, so that entry is a text badge.
     "sosafe-signal": COMMONS.format("SoSafe_Logo_1.svg"),
     "ihk-muenchen": COMMONS.format("Logo_IHK_M%C3%BCnchen_und_Oberbayern.svg"),
     "hercareer": "https://www.her-career.com/wp-content/uploads/2022/05/logo-herCAREER-b310.png.webp",

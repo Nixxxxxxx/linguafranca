@@ -14,9 +14,14 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # (logo file in images/logos/ or None, organisation, meta line, title, description, link or None)
 VORTRAEGE = [
+    ("dbvc-coaching27.png", "DBVC", "16. Apr 2027 · Keynote", "Coaching '27, DBVC-Kongress, Erfurt",
+     "Keynote zum Kongressmotto „Dialog stärken, Demokratie begleiten“", "https://kongress.dbvc.de/dr-franca-parianen/"),
     ("sosafe-signal.png", "SoSafe", "18. Nov 2026 · Masterclass", "Signal Security Summit, Köln",
      "„Sicheres Verhalten nachhaltig verankern: Was wir aus der Neurowissenschaft lernen können“",
      "https://signal.sosafe-awareness.com/cologne/agenda/"),
+    (None, "6. Deutscher Fußverkehrskongress", "29. Sep 2026 · Science Slam", "6. Deutscher Fußverkehrskongress, Bielefeld",
+     "„Warum Menschen zusammenhalten müssen, aber nicht wollen (auch im Straßenverkehr)“",
+     "https://www.fuko.nrw.de/referierende/"),
     # smmdays.de answered every page with 401 on 2026-11-10, so no link and no logo for now.
     (None, "Social Media Marketing Days", "Nov 2022 · Eröffnungskeynote", "Social Media Marketing Days",
      "„83 Milliarden Neuronen gefällt das!“", None),
