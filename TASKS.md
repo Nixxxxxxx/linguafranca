@@ -80,6 +80,10 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
 
 - 2026-11-10 Timmy (Ernst Deutsch Theater, Hamburg): user asked to add the nachtkritik review under Presse and under Talks with an Ernst Deutsch Theater icon. Vorträge: "11. Jul 2026 · Podium" (panel after the premiere of „Timmy – Die Hope stirbt zuletzt“), logo images/logos/ernst-deutsch-theater.svg (the theatre's wordmark from its site), linked to the nachtkritik review because the theatre's event page no longer lists the July panel. Fernsehen & Presse: nachtkritik.de review (Jul 2026), logo images/logos/nachtkritik.svg (their logo2019.svg, white fill changed to #1a1a1a so it shows on the light tile). Both logos in tools/fetch_logos.py. The Hamburger Abendblatt review (Hannah Mahé Crüsemann, 14 Jul 2026; the user remembers her called „extrem erhellend und angenehm“ there) could not be opened (abendblatt.de blocks the tools, paywall): add it once the user has the link. Pushed 2026-11-10 (commit 21b92f2, user OK).
 
+- 2026-11-10 Vorträge: + Social Design Days, Nürnberg (dated Okt 2024 on the user's instruction, "humorvoller Pitch zum Menschen als sozialem
+  Wesen", bayern design logo images/logos/bayern-design.svg), source bayern-design.de/beitrag/her-mit-dem-guten-leben/
+  (page description says 2024, body text says 2025). Pushed 2026-11-10 (user OK).
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.

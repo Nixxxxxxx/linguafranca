@@ -26,6 +26,9 @@ VORTRAEGE = [
     ("ernst-deutsch-theater.svg", "Ernst Deutsch Theater", "11. Jul 2026 · Podium", "„Timmy – Die Hope stirbt zuletzt“, Ernst Deutsch Theater, Hamburg",
      "Podium nach der Premiere: warum Empathie ein Gesicht und einen Namen braucht",
      "https://nachtkritik.de/nachtkritiken/deutschland/hamburg-schleswig-holstein/hamburg/ernst-deutsch-theater-hamburg/timmy-die-hope-stirbt-zuletzt-ernst-deutsch-theater-hamburg-alexander-kiessinger-montiert-einen-abend-zwischen-pop-und-passion"),
+    # Dated 2024 on the user's instruction (the page's description says 2024; its body text says 2025).
+    ("bayern-design.svg", "bayern design", "Okt 2024 · Pitch", "Social Design Days 2024, Nürnberg",
+     "Humorvoller Pitch zum Menschen als sozialem Wesen", "https://bayern-design.de/beitrag/her-mit-dem-guten-leben/"),
     # smmdays.de answered every page with 401 on 2026-11-10, so no link and no logo for now.
     (None, "Social Media Marketing Days", "Nov 2022 · Eröffnungskeynote", "Social Media Marketing Days",
      "„83 Milliarden Neuronen gefällt das!“", None),
