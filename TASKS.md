@@ -60,6 +60,11 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   https://parianen.com at its registrar (once it no longer points to GitHub it stops serving the site);
   (5) Search Console: add parianen.com, use "Change of address" from lingua-franca.eu.
 
+- 2026-11-10 Kontakt: X/Twitter link replaced by Bluesky (https://bsky.app/profile/fparianen.bsky.social) and Mastodon
+  (https://mastodon.social/@Fparianen, found via the Bluesky/Mastodon search APIs; bio matches). Each has its own icon
+  (Simple Icons paths, inline SVG). JSON-LD sameAs updated, twitter:site/creator meta removed, `rel="me"` link to Mastodon
+  added (lets her add parianen.com as a verified link in her Mastodon profile). Pushed 2026-11-10 (user OK).
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.
@@ -76,7 +81,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
 2. Impressum: still cites TMG/RStV (replaced by DDG/MStV in 2024) and has Google Analytics/AdSense paragraphs although
    the site uses neither. Legal wording should be reviewed by the owner.
 3. Add newer appearances, books and texts since 2023 (the newest entries are from 2022/2023).
-4. The Twitter link label is "X / Twitter"; consider removing it if the account is no longer active.
+4. (Done 2026-11-10: X/Twitter replaced by Bluesky + Mastodon icons, see history.)
 5. SEO steps only the owner can do after going live: add the site to Google Search Console and submit `sitemap.xml`;
    put parianen.com in the bio/link of Instagram, X, Rowohlt author page, Wikipedia etc. (backlinks matter most).
 6. (Done: CNAME rewritten to parianen.com.)
