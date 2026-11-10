@@ -27,6 +27,6 @@ d.text((x, 272), "Parianen", font=name, fill=INK)
 d.rectangle((x, 372, x + 70, 376), fill=WARM)
 for i, line in enumerate(["Hirn, Humor und Quellenangaben.", "Bücher · Keynotes · Science Slam"]):
     d.text((x, 404 + i * 42), line, font=body, fill=SOFT)
-d.text((x, 540), "lingua-franca.eu", font=eyebrow, fill=ACCENT)
+d.text((x, 540), "parianen.com", font=eyebrow, fill=ACCENT)
 img.save("images/og-image.jpg", quality=86, optimize=True, progressive=True)
 print("wrote images/og-image.jpg")

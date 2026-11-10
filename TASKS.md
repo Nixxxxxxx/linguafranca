@@ -21,6 +21,45 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - Compressed `images/franca.jpg` (248 KB to 51 KB) and `images/buch2.jpg` (247 KB to 50 KB). Hero photo preloaded with `fetchpriority=high`.
   - Added `robots.txt` (blocks the unused test and old blog files), `sitemap.xml` and `404.html`. The Impressum is `noindex, follow`.
 
+- **2026-11-10 (later)**: User asked: link the individual texts from her torial portfolio
+  (https://www.torial.com/franca.dr-parianen) under "Texte", using torial's images. Done (not pushed yet):
+  - `tools/update_texte.py` fetches all torial pages, saves card images to `images/texte/<id>.jpg` and rewrites the section
+    between `<!-- TEXTE:START -->` / `<!-- TEXTE:END -->` in `index.html`. **To add new texts: put them on torial, then run
+    `python -I tools/update_texte.py`.** Texts not on torial go in the `EXTRA` list in the script.
+  - Shows 30 texts (26 from torial), newest first (23 taz, 1 Berliner Zeitung, 2 Deutschlandfunk Kultur): 9 cards, then an "Alle 30 Texte anzeigen" toggle.
+    The 4 older texts not on torial (Spektrum, Barbara, 2x Steady) are cards at the end (user asked to drop the separate
+    "Weitere Veröffentlichungen" list). Their preview images come from each page's og:image; Spektrum has none (its site
+    blocks scripts), so it shows a teal placeholder card with the outlet name.
+  - torial gives no publication dates, so the order uses the taz article number (higher = newer); the other outlets come after the taz texts.
+
+- **2026-11-10 (later)**: User asked: split "Bühne & Vorträge" and "Fernsehen & Presse" into two stacked categories with
+  logos; web-search her keynotes and add them under "Vorträge" with link and organiser logo, no duplicates. Done (not pushed yet):
+  - Lists live in `tools/build_vortraege.py` (VORTRAEGE / MEDIEN, newest first). **Edit there and run
+    `python -I tools/build_vortraege.py`**; it rewrites the block between `<!-- VORTRAEGE:START/END -->` in `index.html`.
+  - Logos in `images/logos/`, fetched by `python -I tools/fetch_logos.py` (sources listed in the script; Wikimedia Commons
+    where possible). The Frankfurter Zukunftskongress tile is cropped from the old `images/frankfurt.jpg` event graphic.
+  - New from the web search: SoSafe Signal Security Summit Köln (18 Nov 2026, masterclass, upcoming), Social Media Marketing
+    Days 2022 opening keynote, 11. Bayerischer CSR-Tag keynote (IHK München), Polytechnische Gesellschaft "Zukunft Mensch",
+    Deutsche Meisterschaft im Science Slam 2014. Also upgraded existing entries: Frankfurter Zukunftskongress = keynote
+    with R. D. Precht (Feb 2021, now linked to the YouTube video), LEARNTEC 2019 = keynote. ZEIT-Stiftung/Holtzbrinck panel was
+    one event and is listed once.
+  - Without links: SMM Days (smmdays.de answers 401 on every page), Polytechnische (brochure PDF is 404).
+    Text badge instead of logo: SMM Days, B2B-Vertriebskongress (site didn't respond).
+  - Sources: speakerinnen.org/de/profiles/dr-franca-parianen, signal.sosafe-awareness.com/cologne/agenda,
+    youtube.com/watch?v=9HIz-aX5oEc (CSR-Tag), youtube.com/watch?v=Qd2WeihcwtE (Zukunftskongress), web search results for SMM Days.
+  - Not added (not a talk): LifeScienceXplained | Sartorius prize 2024 (from Rowohlt author page), which could go in the bio.
+- 2026-11-10 **New main domain: parianen.com** (bought at GoDaddy; a second GoDaddy domain is still unnamed). User chose
+  parianen.com as the main address (not a forward). Done locally: `CNAME` = `parianen.com` (typo line removed), all URLs in
+  index.html/impressum.html/robots.txt/sitemap.xml switched, og-image regenerated with "parianen.com".
+  Mail subject still says "Anfrage über parianen.com" (was lingua-franca.eu). NOT pushed.
+  parianen.com DNS at GoDaddy has Microsoft 365 email records (autodiscover, msoid, lyncdiscover, sip, email, DKIM
+  selector1/2): never touch them. No MX/TXT visible in the user's paste (may be cut off).
+  Order of steps: (1) user sets GoDaddy DNS: delete `A @ Parked`, add A @ 185.199.108.153/109/110/111 and
+  `CNAME www nixxxxxxx.github.io`; (2) after DNS resolves, push (CNAME change switches the Pages domain);
+  (3) GitHub Settings → Pages: Enforce HTTPS (cert can take up to ~1h); (4) lingua-franca.eu: 301 forward to
+  https://parianen.com at its registrar (once it no longer points to GitHub it stops serving the site);
+  (5) Search Console: add parianen.com, use "Change of address" from lingua-franca.eu.
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.
@@ -39,11 +78,13 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
 3. Add newer appearances, books and texts since 2023 (the newest entries are from 2022/2023).
 4. The Twitter link label is "X / Twitter"; consider removing it if the account is no longer active.
 5. SEO steps only the owner can do after going live: add the site to Google Search Console and submit `sitemap.xml`;
-   put lingua-franca.eu in the bio/link of Instagram, X, Rowohlt author page, Wikipedia etc. (backlinks matter most).
-6. `CNAME` line 2 has a typo (`wwww.`). GitHub Pages only reads line 1, so it is harmless, but it could be removed.
+   put parianen.com in the bio/link of Instagram, X, Rowohlt author page, Wikipedia etc. (backlinks matter most).
+6. (Done: CNAME rewritten to parianen.com.)
 
 ## Status / next step
 - Redesign + SEO finished, checked with headless-Chrome screenshots, and **pushed to main on 2026-11-10 (commit b181dbe, live)**.
+- torial Texte update, Vorträge/logos rework and domain switch to parianen.com: pushed 2026-11-10 (user OK).
+- parianen.com DNS confirmed (A x4 + www CNAME). Waiting on the user: Enforce HTTPS in Settings → Pages, lingua-franca.eu 301 forward, name of the second domain.
 - Next: the user answers the open points above (bio update, Impressum review, newer entries).
 
 ## How to preview
