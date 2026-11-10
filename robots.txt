@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /testEditor.html
+Disallow: /blogAlt.html
+Disallow: /blog_content/
+Disallow: /vendor/
+
+Sitemap: https://lingua-franca.eu/sitemap.xml
