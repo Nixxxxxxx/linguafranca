@@ -84,6 +84,57 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   Wesen", bayern design logo images/logos/bayern-design.svg), source bayern-design.de/beitrag/her-mit-dem-guten-leben/
   (page description says 2024, body text says 2025). Pushed 2026-11-10 (user OK).
 
+- 2026-11-10 User asked for 8 design variations (focus: icon vs. text placement, balance, size). Built by 8 parallel
+  agents as local drafts in `design-variants/v1..v8/` (index.html + style.css each, images via ../../images/). The folder
+  is in .gitignore, so it is never published. Directions: v1 editorial magazine (small greyscale logos in rows), v2 logo
+  wall, v3 Swiss minimal table, v4 timeline, v5 dark bold keynote, v6 warm centered icon-on-top, v7 compact product-UI
+  cards, v8 asymmetric sticky split. All 8 finished and checked (all 75 links present, no broken images, no external requests). Overview page: `design-variants/index.html` (screenshots in design-variants/_shots/). Waiting for the user to pick one or mix; then port the
+  chosen design into the live index.html + css/site-style.css (keep tools/build_vortraege.py and update_texte.py markup
+  in sync if card markup changes).
+- 2026-11-10 **User picked v5 (dark keynote) as the base**, but its "Auf Bühnen und im Programm" section does not fit
+  (42 cards with big white logo panels: a glaring checkerboard, about 5000px tall). Built 8 alternatives for just that section:
+  `design-variants/v5a..v5h/` (each = v5 page + own section.css; shares ../v5/style.css). Generator:
+  `python -I design-variants/_gen/make_v5_sections.py` (run from project root; parses entries from v5/index.html),
+  screenshots: `sh _gen/shots.sh` from design-variants/. Overview: `design-variants/v5-sektion.html`.
+  v5a highlights + rows, v5b dark logo grid, v5c tabs, v5d setlist, v5e carousel, v5f 6 highlights + "Alle anzeigen",
+  v5g two year-timelines (re-sorts Medien by date), v5h logo marquee + stats + accordions.
+  Logo rule learned: only plain wordmarks survive a white-silhouette filter (MONO_OK list in the generator); other logos
+  go on a small light chip; text-only entries get a type icon (mic/newspaper/lectern) in small slots.
+  All 35 section links and all images verified in each. **Waiting for the user to pick one (or mix).** Then port v5 +
+  the chosen section to live index.html/css and update tools/build_vortraege.py to emit the new markup.
+- 2026-11-10 User likes v5's header energy, but the hard black/white contrast below is tiring to read. Asked for examples
+  with the header kept and the lower parts light with black text, or the same energy in other colour schemes.
+  Built `design-variants/v5t1..v5t8` with `python -I design-variants/_gen/make_v5_themes.py [section, default v5f]`:
+  it rewrites v5 style.css + the section css into token-only CSS (`design-variants/v5-themes/`), each theme = theme.css.
+  t1 paper & coral, t2 white with dark hero/contact frame, t3 sand with dark books band, t4 light with coral contact
+  finale (all dark header/hero, light sections); t5 navy & yellow, t6 aubergine & mint, t7 forest & apricot,
+  t8 indigo & pink (full dark, softer off-white text). On light sections the accent is darkened (#c63f1c-ish) for text
+  contrast and white logo silhouettes become dark ones. Overview: `design-variants/v5-farben.html`.
+  **Waiting: user picks colour scheme + section variant.**
+- 2026-11-10 User: take v5t1, with the sand colours of v5t3 for the lower part, plus v1's big "Kurzgefasst" lead
+  article with the rest below; lead = new taz text „KI und Automatisierung machen uns dümmer, ist das wirklich so
+  schlimm?“ (taz 15 Dec 2025, by Franca, not on torial yet; image saved as images/texte/taz-6133816.jpg, untracked
+  until the port), rotating to other texts after a while or on click. Built as `design-variants/v5x/`:
+  `python -I design-variants/_gen/make_v5_themes.py && python -I design-variants/_gen/make_v5_texte.py`.
+  Lead rotates through 5 texts every 7s (tabs to click, pause button, pauses on hover/focus, off for
+  prefers-reduced-motion; small inline script, no external requests); then 8 texts in two columns of rows, the rest
+  behind "Alle 31 Texte anzeigen". Bühnen section is still v5f there. When porting: add the KI text to
+  tools/update_texte.py EXTRA (or a FEATURED list) and teach the script to emit the lead + rows markup.
+- 2026-11-10 Added the 2 newest taz texts from https://taz.de/Franca-Parianen/!a131503/ (not on torial):
+  „Knutschen ist Trumpf“ (Bindungsverhalten, Oct 2026, !6214458) and „Alles eine Frage des Timings!“ (Kürzere
+  Geburten, Apr 2026, !6165835), images images/texte/taz-6214458.jpg / taz-6165835.jpg (NEWER in make_v5_texte.py).
+  Lead rotation now: KI → Knutschen → Timing → Denken → Denkfalle; 33 texts. The author page also lists 3 more texts
+  missing from the site (!6126486 Homeoffice/Ben Rein interview, !6114890 Keuchhusten-Impfung, !6081724 Sexismus beim
+  Intelligenzbegriff): offered to the user, not added.
+- 2026-11-10 New site icon: prompt for an image generator (6x6 sheet, 36 variations in the v5x palette) saved at
+  `C:\Users\D\Desktop\website-icon-prompt.txt`.
+- 2026-11-10 User picked row 4, column 6 of the generated sheet (`Downloads\Neuroscience Icon Grid Collection.png`):
+  coral neuron on an off-white rounded tile. `python -I tools/make_icons.py` re-draws it in exact brand colours from
+  images/icon-source.png (the tile cut from the sheet) → favicon.ico (16/32/48), images/favicon-16/32/48.png,
+  images/icon-512.png, images/apple-touch-icon.png (180, square, no transparency). Linked in index.html,
+  impressum.html, 404.html (replaces images/icon.png, which is now unused). Pushed with the user's OK.
+  Only the icon went live; the v5x redesign is still local and waiting for the Bühnen-section choice.
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.
