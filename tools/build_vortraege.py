@@ -4,6 +4,8 @@ Edit the VORTRAEGE / MEDIEN lists below (newest first), then run from the projec
     python -I tools/build_vortraege.py
 Logos live in images/logos/ (fetch new ones with tools/fetch_logos.py). logo=None shows the
 organisation name as a text badge instead. link=None shows the title without a link.
+The entries named in VORTRAEGE_HIGHLIGHTS / MEDIEN_HIGHLIGHTS are shown as cards; all others as a compact list
+behind an "Alle … anzeigen" toggle.
 Rewrites everything between <!-- VORTRAEGE:START --> and <!-- VORTRAEGE:END --> in index.html.
 """
 import html
@@ -139,30 +141,43 @@ MEDIEN = [
 ]
 
 
-def cards(items, ind):
+# Highlights shown as cards (matched by title start); everything else is listed behind "Alle … anzeigen".
+VORTRAEGE_HIGHLIGHTS = ["Coaching", "Signal Security", "Frankfurter Zukunftskongress", "ZEIT-Stiftung", "LEARNTEC",
+                        "Deutsche Meisterschaft"]
+MEDIEN_HIGHLIGHTS = ["NANO Talk", "Eckart von Hirschhausen", "Markus Lanz", "Die Liebe ist eine Naturgewalt",
+                     "Wie der Zyklus", "Sie hat die beste Antwort"]
+
+
+def title_html(title, link):
     e = html.escape
-    out = []
-    for logo, org, meta, title, desc, link in items:
-        tile = (f'<img src="./images/logos/{e(logo)}" alt="Logo {e(org)}" loading="lazy">' if logo
-                else f'<span class="logo-text">{e(org)}</span>')
-        t = (f'<a class="title" href="{e(link)}" target="_blank" rel="noopener">{e(title)}</a>' if link
-             else f'<span class="title">{e(title)}</span>')
-        out.append(f'{ind}<li class="appearance">\n'
-                   f'{ind}    <div class="logo">{tile}</div>\n'
-                   f'{ind}    <div class="body"><span class="meta">{e(meta)}</span>{t}'
-                   f'<span class="desc">{e(desc)}</span></div>\n'
-                   f'{ind}</li>')
+    return (f'<a class="title" href="{e(link)}" target="_blank" rel="noopener">{e(title)}</a>' if link
+            else f'<span class="title">{e(title)}</span>')
+
+
+def category(name, items, keys, extra=""):
+    """Highlight cards (logo chip, meta, title, description), then the rest as a compact list behind a toggle."""
+    e, ind = html.escape, " " * 16
+    hi = []
+    for k in keys:
+        match = [it for it in items if it[3].startswith(k)]
+        if not match:
+            sys.exit(f"Highlight '{k}' not found in {name}")
+        hi.append(match[0])
+    rest = [it for it in items if it not in hi]
+    out = [f'{ind}<div class="category"{extra}>', f'{ind}    <h3>{e(name)}</h3>', f'{ind}    <ul class="hcards">']
+    for logo, org, meta, title, desc, link in hi:
+        tile = (f'<span class="hl hl-chip"><img src="./images/logos/{e(logo)}" alt="Logo {e(org)}" loading="lazy"></span>'
+                if logo else f'<span class="hl hl-text">{e(org)}</span>')
+        out.append(f'{ind}        <li class="hc">{tile}<span class="meta">{e(meta)}</span>{title_html(title, link)}'
+                   f'<span class="desc">{e(desc)}</span></li>')
+    out += [f'{ind}    </ul>',
+            f'{ind}    <details class="all"><summary><span class="c">Alle {len(items)} anzeigen</span>'
+            f'<span class="o">Weniger anzeigen</span></summary>',
+            f'{ind}        <ul class="minis">']
+    for logo, org, meta, title, desc, link in rest:
+        out.append(f'{ind}            <li class="mi"><span class="meta">{e(meta)}</span>{title_html(title, link)}</li>')
+    out += [f'{ind}        </ul>', f'{ind}    </details>', f'{ind}</div>']
     return "\n".join(out)
-
-
-def category(title, items, extra=""):
-    ind = " " * 16
-    return (f'{ind}<div class="category"{extra}>\n'
-            f'{ind}    <h3>{html.escape(title)}</h3>\n'
-            f'{ind}    <ul class="appearances">\n'
-            f'{cards(items, ind + "        ")}\n'
-            f'{ind}    </ul>\n'
-            f'{ind}</div>')
 
 
 def main():
@@ -174,7 +189,8 @@ def main():
     start, end = "<!-- VORTRAEGE:START -->", "<!-- VORTRAEGE:END -->"
     if start not in s or end not in s:
         sys.exit("Markers not found in index.html")
-    body = category("Vorträge", VORTRAEGE) + "\n\n" + category("Fernsehen & Presse", MEDIEN, ' id="medien"')
+    body = (category("Vorträge", VORTRAEGE, VORTRAEGE_HIGHLIGHTS) + "\n\n"
+            + category("Fernsehen & Presse", MEDIEN, MEDIEN_HIGHLIGHTS, ' id="medien"'))
     a, b = s.index(start) + len(start), s.index(end)
     page.write_text(s[:a] + "\n" + body + "\n                " + s[b:], encoding="utf-8")
     print(f"Built {len(VORTRAEGE)} Vorträge and {len(MEDIEN)} Fernsehen & Presse entries.")

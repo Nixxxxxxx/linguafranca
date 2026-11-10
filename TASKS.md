@@ -134,6 +134,16 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   images/icon-512.png, images/apple-touch-icon.png (180, square, no transparency). Linked in index.html,
   impressum.html, 404.html (replaces images/icon.png, which is now unused). Pushed with the user's OK.
   Only the icon went live; the v5x redesign is still local and waiting for the Bühnen-section choice.
+- 2026-11-10 **v5x with Bühnen section v5f went live** (user: "go ahead with v5f, then push").
+  - index.html = previous SEO head (canonical, JSON-LD, OG, icons) + v5x body; css/site-style.css = one flat file
+    (v5 base tokenised + Impressum/404 light styles + v5f section flattened, no CSS nesting + sand colours +
+    Kurzgefasst); js/site.js = lead rotation (loaded with defer).
+  - tools/build_vortraege.py now emits highlight cards (VORTRAEGE_HIGHLIGHTS / MEDIEN_HIGHLIGHTS) + a list behind
+    "Alle … anzeigen". tools/update_texte.py now emits the rotating lead (LEAD = KI, Knutschen, Timing; FEATURED from
+    torial) + rows + "Alle … Texte anzeigen". Both were re-run after the port and give identical output (78 links).
+  - Impressum and 404 now render on the sand background (class .legal gets the light tokens).
+  - design-variants/ stays local (gitignored); its generators are no longer the source of the live CSS. Edit
+    css/site-style.css directly from now on.
 
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.

@@ -2,7 +2,8 @@
 
 - Fetches every page of https://www.torial.com/franca.dr-parianen
 - Saves each card image locally as images/texte/<id>.jpg (the site never hotlinks, for GDPR reasons)
-- Replaces everything between <!-- TEXTE:START --> and <!-- TEXTE:END --> in index.html
+- Replaces everything between <!-- TEXTE:START --> and <!-- TEXTE:END --> in index.html:
+  a rotating lead (LEAD + FEATURED), then the other texts as rows, the rest behind "Alle … Texte anzeigen"
 
 Usage (from the project root, needs Pillow):  python -I tools/update_texte.py
 Texts that are NOT on torial go in EXTRA below (shown as cards after the torial texts).
@@ -19,7 +20,26 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 PROFILE = "https://www.torial.com/franca.dr-parianen"
 UA = {"User-Agent": "Mozilla/5.0 (site build script)"}
-VISIBLE = 9  # cards shown before the "Alle Texte" toggle
+VISIBLE = 8  # rows shown below the lead before the "Alle Texte" toggle
+
+# Rotating lead ("Kurzgefasst"): these texts first (newest taz texts, not on torial yet; images stored locally),
+# then the torial texts whose titles start with FEATURED. The lead switches every 7s (js/site.js).
+LEAD = [
+    {"id": "taz-6133816", "url": "https://taz.de/KI-und-Automatisierung-machen-uns-duemmer-ist-das-wirklich-so-schlimm/!6133816/",
+     "outlet": "taz", "kicker": "Cognitive Offloading", "date": "Dez 2025",
+     "title": "KI und Automatisierung machen uns dümmer, ist das wirklich so schlimm?",
+     "desc": "Wir nutzen Navis und fragen ChatGPT nach Rezepten. Das kann zu weniger kognitiver Leistung führen. "
+             "Doch wie können wir die Helfer produktiv einsetzen?"},
+    {"id": "taz-6214458", "url": "https://taz.de/Bindungsverhalten/!6214458/", "outlet": "taz",
+     "kicker": "Bindungsverhalten", "date": "Okt 2026", "title": "Knutschen ist Trumpf",
+     "desc": "Viele Säugetiere verlassen sich in Sachen Bindung nicht auf penetrativen Sex. Küssen ist nicht nur schön, "
+             "sondern auch evolutionär von Vorteil."},
+    {"id": "taz-6165835", "url": "https://taz.de/Kuerzere-Geburten/!6165835/", "outlet": "taz",
+     "kicker": "Kürzere Geburten", "date": "Apr 2026", "title": "Alles eine Frage des Timings!",
+     "desc": "Die innere Uhr lenkt viele Prozesse in unserem Körper. Eine neue Studie zeigt nun: "
+             "Sie scheint auch die Geburt zu beeinflussen."},
+]
+FEATURED = ["Kognitionsforschung: Warum Denken", "Biases: In der Denkfalle"]
 
 OUTLETS = {
     "taz.de": "taz",
@@ -110,29 +130,64 @@ def save_image(it):
     return f"./images/texte/{it['id']}.jpg" if out.exists() else None
 
 
-def card(it, src, indent):
+def slide(it, n, total, ind):
     e = html.escape
-    img = (f'<img src="{e(src)}" width="318" height="192" loading="lazy" alt="">' if src
-           else f'<div class="placeholder" aria-hidden="true">{e(it["outlet"])}</div>')
-    return (f'{indent}<li class="article"><a href="{e(it["url"])}" target="_blank" rel="noopener">\n'
-            f'{indent}    {img}\n'
-            f'{indent}    <span class="outlet">{e(it["outlet"])}</span>\n'
-            f'{indent}    <h3>{e(it["title"])}</h3>\n'
-            f'{indent}    <span class="read">Artikel lesen →</span>\n'
-            f'{indent}</a></li>')
+    kick = f'<span class="tl-kicker">{e(it["kicker"])}</span>' if it.get("kicker") else ""
+    desc = f'<span class="tl-desc">{e(it["desc"])}</span>' if it.get("desc") else ""
+    date = f' · {e(it["date"])}' if it.get("date") else ""
+    return (f'{ind}<li class="tl-slide{" is-on" if n == 0 else ""}" id="tl-s{n}" role="tabpanel" aria-roledescription="Folie" '
+            f'aria-label="{n + 1} von {total}"><a href="{e(it["url"])}" target="_blank" rel="noopener">\n'
+            f'{ind}    <span class="tl-pic"><img src="{e(it["src"])}" width="1080" height="720" alt="" '
+            f'loading="{"eager" if n == 0 else "lazy"}"></span>\n'
+            f'{ind}    <span class="tl-text"><span class="tl-outlet">{e(it["outlet"])}{date}</span>{kick}'
+            f'<span class="tl-head">{e(it["title"])}</span>{desc}<span class="tl-read">Artikel lesen →</span></span>\n'
+            f'{ind}</a></li>')
+
+
+def row(it, src, n, ind):
+    e = html.escape
+    pic = (f'<span class="t-pic"><img src="{e(src)}" width="318" height="192" alt="" loading="lazy"></span>' if src
+           else f'<span class="t-pic t-ph" aria-hidden="true">{e(it["outlet"])}</span>')
+    return (f'{ind}<li class="t-item"><a href="{e(it["url"])}" target="_blank" rel="noopener">'
+            f'<span class="t-num" aria-hidden="true">{n:02d}</span><span class="t-text"><span class="t-outlet">{e(it["outlet"])}</span>'
+            f'<span class="t-head">{e(it["title"])}</span><span class="t-read">Artikel lesen →</span></span>{pic}</a></li>')
+
+
+def short(title):
+    """Tab label: drop a leading "Topic: " prefix."""
+    return re.sub(r"^[^:]{0,40}:\s*", "", title)
 
 
 def build(items):
     e, ind = html.escape, " " * 16
-    srcs = [save_image(it) for it in items]
-    first = [card(it, src, ind + "    ") for it, src in zip(items[:VISIBLE], srcs[:VISIBLE])]
-    rest = [card(it, src, ind + "        ") for it, src in zip(items[VISIBLE:], srcs[VISIBLE:])]
-    out = [f'{ind}<ul class="articles">', *first, f"{ind}</ul>"]
-    if rest:
+    srcs = {it["id"]: save_image(it) for it in items}
+    lead = [dict(it, src=f"./images/texte/{it['id']}.jpg") for it in LEAD]
+    for k in FEATURED:
+        m = [it for it in items if it["title"].startswith(k) and srcs[it["id"]]]
+        if m:  # skipped silently if torial renamed it
+            lead.append(dict(m[0], src=srcs[m[0]["id"]]))
+    lead_ids = {it["id"] for it in lead}
+    rest = [it for it in items if it["id"] not in lead_ids]
+    total = len(LEAD) + len(items)
+    tabs = "".join(
+        f'<button type="button" class="tl-tab{" is-on" if n == 0 else ""}" role="tab" aria-controls="tl-s{n}" '
+        f'aria-selected="{"true" if n == 0 else "false"}"><span class="tl-n">{n + 1:02d}</span>'
+        f'<span class="tl-t">{e(short(it["title"]))}</span><span class="tl-bar"></span></button>'
+        for n, it in enumerate(lead))
+    out = [f'{ind}<div class="tl" data-ms="7000" aria-roledescription="Karussell" aria-label="Ausgewählte Texte">',
+           f'{ind}    <ul class="tl-slides">', *[slide(it, n, len(lead), ind + "        ") for n, it in enumerate(lead)],
+           f'{ind}    </ul>',
+           f'{ind}    <div class="tl-tabs" role="tablist" aria-label="Text wählen">{tabs}</div>',
+           f'{ind}    <button type="button" class="tl-pause" aria-label="Automatisches Wechseln anhalten">❚❚</button>',
+           f'{ind}</div>',
+           f'{ind}<ul class="t-list">', *[row(it, srcs[it["id"]], n + 1, ind + "    ") for n, it in enumerate(rest[:VISIBLE])],
+           f'{ind}</ul>']
+    if rest[VISIBLE:]:
         out += [f'{ind}<details class="more-texts">',
-                f'{ind}    <summary><span class="closed">Alle {len(items)} Texte anzeigen</span><span class="open">Weniger anzeigen</span></summary>',
-                f'{ind}    <ul class="articles">', *rest,
-                f"{ind}    </ul>", f"{ind}</details>"]
+                f'{ind}    <summary><span class="closed">Alle {total} Texte anzeigen</span><span class="open">Weniger anzeigen</span></summary>',
+                f'{ind}    <ul class="t-list">',
+                *[row(it, srcs[it["id"]], n + 1 + VISIBLE, ind + "        ") for n, it in enumerate(rest[VISIBLE:])],
+                f'{ind}    </ul>', f'{ind}</details>']
     out.append(f'{ind}<p class="source">Alle Texte auch im '
                f'<a href="{PROFILE}" target="_blank" rel="noopener">Portfolio auf torial</a>.</p>')
     return "\n".join(out)
@@ -151,7 +206,7 @@ def main():
     a, b = s.index(start) + len(start), s.index(end)
     s = s[:a] + "\n" + build(items) + "\n                " + s[b:]
     page.write_text(s, encoding="utf-8")
-    print(f"Texte section rebuilt with {len(items)} texts ({len(EXTRA)} of them from EXTRA).")
+    print(f"Texte section rebuilt: {len(LEAD) + len(items)} texts ({len(LEAD)} from LEAD, {len(EXTRA)} from EXTRA).")
 
 
 if __name__ == "__main__":
