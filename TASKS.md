@@ -71,6 +71,15 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   coat of arms, which is not free to use). Sources: kongress.dbvc.de/dr-franca-parianen/, fuko.nrw.de/referierende/.
   Pushed 2026-11-10 (user OK).
 
+- 2026-11-10 Fernsehen & Presse: +10 interviews/podcasts from web search (Nachgefragt NGF087 May 2026 + NGF65 Sep 2023,
+  PVS einblick Feb 2024, herCAREER Voice podcast Jun 2023, Radio Magic City Six Apr 2023, The Writer's Pit Oct 2022,
+  herCAREER interview Aug 2022, Mildly Interesting Oct 2021, KüchenTalk Mar 2021, Einfach ganz leben #42). Text badges
+  except herCAREER. Psychologie Heute book review (Nov 2020) and Hamburger Abendblatt interview (30 Mar 2021) added on the user's request. Skipped: NDR Science-Slam podcast (404), Frankfurter Zukunftskongress
+  newsroom interview (domain now someone else's), Sheconomy (reprint of the herCAREER interview), Dlf Kultur pieces (her own
+  commentaries, not interviews). Local only, waiting for OK to push.
+
+- 2026-11-10 Timmy (Ernst Deutsch Theater, Hamburg): user asked to add the nachtkritik review under Presse and under Talks with an Ernst Deutsch Theater icon. Vorträge: "11. Jul 2026 · Podium" (panel after the premiere of „Timmy – Die Hope stirbt zuletzt“), logo images/logos/ernst-deutsch-theater.svg (the theatre's wordmark from its site), linked to the nachtkritik review because the theatre's event page no longer lists the July panel. Fernsehen & Presse: nachtkritik.de review (Jul 2026), logo images/logos/nachtkritik.svg (their logo2019.svg, white fill changed to #1a1a1a so it shows on the light tile). Both logos in tools/fetch_logos.py. The Hamburger Abendblatt review (Hannah Mahé Crüsemann, 14 Jul 2026; the user remembers her called „extrem erhellend und angenehm“ there) could not be opened (abendblatt.de blocks the tools, paywall): add it once the user has the link. Local only, waiting for OK to push.
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.
