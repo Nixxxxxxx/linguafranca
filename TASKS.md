@@ -6,7 +6,7 @@ GitHub Pages from `main` of https://github.com/Nixxxxxxx/linguafranca (custom do
 lingua-franca.eu). **Pushing to `main` publishes the live site.**
 
 ## History
-- **2026-11-10**: User asked: "make the website more professional." Full redesign done (uncommitted at time of writing):
+- **2026-11-10**: User asked: "make the website more professional." Full redesign done:
   - Replaced the jQuery `.load()` fragment site (bright teal, hover-zoom cards, blurred "past" cards,
     typewriter effect) with a single static one-page site: `index.html` with sections
     Über mich / Bücher / Vorträge & Medien / Texte / Kontakt, plus a standalone `impressum.html`.
@@ -14,7 +14,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - Removed `main_content.html`, `termine.html`, `blog.html`, `contact.html` (their content now lives in `index.html`; old versions in git history).
   - The old 2022 "Demnächst" events were moved into the speaking list with their dates, so the site no longer shows out-of-date "upcoming" events.
 
-- **2026-11-10 (later)**: User asked: "update for seo". Done (also uncommitted):
+- **2026-11-10 (later)**: User asked: "update for seo". Done:
   - `index.html` head: sharper title/description, robots, Open Graph (`og:type=profile`) and Twitter card tags,
     and JSON-LD structured data (WebSite, ProfilePage, Person with sameAs links, and the five books).
   - `images/og-image.jpg` (1200x630 share preview), built by `python tools/make_og_image.py` (re-run if the photo or text changes).
@@ -43,8 +43,8 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
 6. `CNAME` line 2 has a typo (`wwww.`). GitHub Pages only reads line 1, so it is harmless, but it could be removed.
 
 ## Status / next step
-- Redesign + SEO finished and checked with headless-Chrome screenshots (desktop 1440px, mobile 390px). **Not committed or pushed yet:
-  waiting for the user's OK** (pushing goes live).
+- Redesign + SEO finished, checked with headless-Chrome screenshots, and **pushed to main on 2026-11-10 (commit b181dbe, live)**.
+- Next: the user answers the open points above (bio update, Impressum review, newer entries).
 
 ## How to preview
 - Open `index.html` directly in a browser (no build step), or run `python -m http.server 8000` in the project folder.
