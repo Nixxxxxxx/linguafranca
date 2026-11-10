@@ -74,7 +74,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
 - 2026-11-10 Fernsehen & Presse: +10 interviews/podcasts from web search (Nachgefragt NGF087 May 2026 + NGF65 Sep 2023,
   PVS einblick Feb 2024, herCAREER Voice podcast Jun 2023, Radio Magic City Six Apr 2023, The Writer's Pit Oct 2022,
   herCAREER interview Aug 2022, Mildly Interesting Oct 2021, KüchenTalk Mar 2021, Einfach ganz leben #42). Text badges
-  except herCAREER. Psychologie Heute book review (Nov 2020) and Hamburger Abendblatt interview (30 Mar 2021) added on the user's request. Skipped: NDR Science-Slam podcast (404), Frankfurter Zukunftskongress
+  except herCAREER. Psychologie Heute book review (Nov 2020) and Hamburger Abendblatt interview (30 Mar 2021) added on the user's request; 3sat NANO Talk (26 Feb 2026, guest of Stephanie Rohde) added at the top of the list. Aurel Original tile now uses the show's key art from IMDb (tt16439326), cropped to the title lettering by `aurel()` in tools/fetch_logos.py (images/logos/aurel-original.jpg). Skipped: NDR Science-Slam podcast (404), Frankfurter Zukunftskongress
   newsroom interview (domain now someone else's), Sheconomy (reprint of the herCAREER interview), Dlf Kultur pieces (her own
   commentaries, not interviews). Pushed 2026-11-10 (commit 21b92f2, user OK).
 

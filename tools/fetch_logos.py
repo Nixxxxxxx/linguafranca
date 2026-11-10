@@ -90,6 +90,21 @@ def frankfurt():
         print("ok    frankfurter-zukunftskongress.jpg")
 
 
+def aurel():
+    """Aurel Original (ZDF): the show's key art from its IMDb page (tt16439326), cropped to the title lettering."""
+    out = OUT / "aurel-original.jpg"
+    if not out.exists():
+        url = ("https://m.media-amazon.com/images/M/"
+               "MV5BYjBmMTYyNjgtMTVkNy00ZmM1LWFjYTgtYjFlZTkwZjM5ODRmXkEyXkFqcGc@._V1_.jpg")
+        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
+            im = Image.open(io.BytesIO(r.read())).convert("RGB")
+        im = im.crop((330, 300, 950, 560))  # 1280x720 source: "AUREL ORIGINAL" over the host
+        im.thumbnail((480, 240))
+        im.save(out, quality=86)
+        print("ok    aurel-original.jpg")
+
+
 if __name__ == "__main__":
     frankfurt()
+    aurel()
     main(set(sys.argv[1:]) or None)

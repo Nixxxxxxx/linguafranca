@@ -69,12 +69,15 @@ VORTRAEGE = [
 ]
 
 MEDIEN = [
+    ("3sat.png", "3sat", "3sat · 26. Feb 2026 · Gast", "NANO Talk: Neues Sprechen – wie uns unsere Sprache verrät",
+     "Mit Stephanie Rohde: wie Worte Gefühle, Entscheidungen und sogar das Gehirn verändern",
+     "https://www.3sat.de/wissen/nano-talk/260226-sendung-nano-talk-mit-stephanie-rohde-neues-sprechen-wie-uns-unsere-sprache-verraet-ntk-100.html"),
     ("zdf.png", "ZDF", "ZDF · Expertin", "Eckart von Hirschhausen: Der Sünde auf der Spur",
      "Interview zu sozialer Kognition und Neid",
      "https://www.zdf.de/dokumentation/dokumentation-sonstige/eckart-von-hirschhausen-der-suende-auf-der-spur-100.html"),
     ("zdf.png", "ZDF", "ZDF · 2017 · Gast", "Markus Lanz",
      "Gast in den Sendungen vom 25.04.2017 und 03.10.2017", None),
-    ("zdf.png", "ZDF", "ZDF · Redaktion", "Aurel Original", "Redaktion, Recherche", None),
+    ("aurel-original.jpg", "Aurel Original", "ZDF · Redaktion", "Aurel Original", "Redaktion, Recherche", None),
     ("ndr.png", "NDR", "NDR · Gast", "Tietjen und Bommes", "Talkshow-Gast", None),
     ("3sat.png", "3sat", "3sat · Gast", "Scobel: Die Magie des Spielens",
      "Durch Spielen entwickeln wir viele unserer Fähigkeiten.",
