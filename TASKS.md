@@ -145,7 +145,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - design-variants/ stays local (gitignored); its generators are no longer the source of the live CSS. Edit
     css/site-style.css directly from now on.
 
-- 2026-11-11 **Big content edit list from the user: done locally, NOT committed or pushed** (waiting for the user's OK).
+- 2026-11-11 **Big content edit list from the user: done and pushed 2026-11-11 (commit a5a27c4, user OK), incl. everything below (English page, SEO).**
   - Hero "Dr." now in the display sans font (.h1-pre). About: "Über mich" eyebrow and "Kurzbio" cite removed; new bio
     (user's text, proofread: Bestsellerautorin, Studium der Neurowissenschaften, Science-Slammerin, «» quotes,
     "ins Französische und Koreanische", "in Print und Fernsehen", "im taz-Ressort Zukunft", second "regelmäßig" dropped,
@@ -198,7 +198,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     js/site.js picks pause/play labels by <html lang>. Impressum stays German-only (footer link says "(German)").
     Gotcha: the DE/EN links are "./en/" and "../", which open a folder listing when previewing via file://;
     use `python -m http.server 8000` to test the switch locally.
-  - Next: user reviews locally, then commit + push on their OK. After going live: Search Console (submit sitemap,
+  - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
 ## Decisions (and why)
