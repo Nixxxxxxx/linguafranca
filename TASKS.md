@@ -210,6 +210,11 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - 2026-11-11 Phone menu back to one scrollable row (user: wrapping didn't fit at a glance either), now with edge fade
     and coral arrow buttons (js/site.js wraps .nav in .nav-wrap, toggles .more-left/.more-right).
   - Pushed 2026-11-11 (user OK): caption fix, bio size fix, English rewrite + tweaks, phone menu arrows.
+  - 2026-11-11 Translation review (subagent; report only) applied with the user's OK: hero restores "brain and hormone
+    researcher … (Rowohlt)"; "Book her for"; "short talk(s)" instead of "impulse talk"; prize-money phrase removed;
+    Overton window; English city names in event titles (CITIES in build_en.py); WORDS "Science Slam" → "Science slam";
+    ~15 wording fixes in topics/bio/cards/lead teasers. Book title now ends with "?" in bio + fact box on BOTH pages.
+    NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 

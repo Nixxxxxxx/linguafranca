@@ -21,7 +21,7 @@ DESC_EN = {
     "Keynote zum Kongressmotto „Dialog stärken, Demokratie begleiten“":
         "Keynote on the congress theme “Strengthening dialogue, supporting democracy”",
     "„Sicheres Verhalten nachhaltig verankern: Was wir aus der Neurowissenschaft lernen können“":
-        "“Anchoring secure behaviour for good: what we can learn from neuroscience”",
+        "“Making secure behaviour stick: what we can learn from neuroscience”",
     "Begrüßung mit einem Science Slam beim Festival „wider die Einsamkeit“":
         "Opening science slam at the festival “against loneliness”",
     "„Warum Menschen zusammenhalten müssen, aber nicht wollen (auch im Straßenverkehr)“":
@@ -33,9 +33,9 @@ DESC_EN = {
     "Symposium des HarbourClub, des Netzwerks der Kommunikationschefs, zu Gast bei Roche":
         "Symposium of the HarbourClub, the network of chief communications officers, hosted by Roche",
     "Impulsvortrag beim Unternehmerinnentag der IHK München":
-        "Impulse talk at the Munich Chamber of Commerce’s day for women entrepreneurs",
+        "Short talk at the Women Entrepreneurs’ Day of the Munich Chamber of Industry and Commerce",
     "Keynote gemeinsam mit Richard David Precht: Zusammenleben mit 8 Milliarden Gehirnen":
-        "Keynote together with Richard David Precht: living together with 8 billion brains",
+        "Keynote with Richard David Precht: living together with 8 billion brains",
     "„Was hält unsere Gesellschaft zusammen? Miteinander teilen“, mit Steffen Mau und Robert Habeck":
         "“What holds our society together? Sharing with each other”, with Steffen Mau and Robert Habeck",
     "Soziale Bedürfnisse motivieren uns zum Lernen": "Social needs motivate us to learn",
@@ -43,12 +43,12 @@ DESC_EN = {
     "Mit Stephanie Rohde: wie Worte Gefühle, Entscheidungen und sogar das Gehirn verändern":
         "With Stephanie Rohde: how words change feelings, decisions and even the brain",
     "Interview zu sozialer Kognition und Neid": "Interview on social cognition and envy",
-    "Gast in den Sendungen vom 25.04.2017 und 03.10.2017": "Guest on the shows of 25 April 2017 and 3 October 2017",
+    "Gast in den Sendungen vom 25.04.2017 und 03.10.2017": "Guest on the episodes of 25 April and 3 October 2017",
     "Interview über Hormone und Liebe": "Interview on hormones and love",
     "Interview": "Interview",
     "Interview: Auch Männer sind hormongesteuert": "Interview: men are driven by hormones, too",
     "Über Frauenfreundschaften und Kooperation": "On female friendship and cooperation",
-    "Gast bei Gert Scobel": "Guest of Gert Scobel",
+    "Gast bei Gert Scobel": "Guest on Gert Scobel’s show",
     "Beitrag des HarbourClub": "Article by the HarbourClub",
 }
 
@@ -63,17 +63,18 @@ LEAD_EN = {
         "So how can we put these helpers to good use?",
     "Viele Säugetiere verlassen sich in Sachen Bindung nicht auf penetrativen Sex. Küssen ist nicht nur schön, "
     "sondern auch evolutionär von Vorteil.":
-        "Many mammals don’t rely on penetrative sex for bonding. Kissing is not only nice, "
-        "it is also an evolutionary advantage.",
+        "Many mammals don’t rely on penetrative sex for bonding. Kissing isn’t just nice – "
+        "it’s an evolutionary advantage.",
     "Die innere Uhr lenkt viele Prozesse in unserem Körper. Eine neue Studie zeigt nun: "
     "Sie scheint auch die Geburt zu beeinflussen.":
-        "Our internal clock steers many processes in the body. A new study now shows "
-        "that it seems to influence birth, too.",
+        "Our internal clock steers many processes in the body. A new study suggests "
+        "it may influence childbirth, too.",
 }
 
+CITIES = {"Köln": "Cologne", "Nürnberg": "Nuremberg", "München": "Munich", "Wien": "Vienna"}
 MONTHS = {"Jan": "Jan", "Feb": "Feb", "Mär": "Mar", "Apr": "Apr", "Mai": "May", "Jun": "Jun", "Jul": "Jul",
           "Aug": "Aug", "Sep": "Sep", "Okt": "Oct", "Nov": "Nov", "Dez": "Dec"}
-WORDS = {"Podium": "Panel", "Speakerin": "Speaker", "Eröffnungsimpuls": "Opening talk", "Impulsvortrag": "Impulse talk",
+WORDS = {"Podium": "Panel", "Speakerin": "Speaker", "Eröffnungsimpuls": "Opening talk", "Impulsvortrag": "Short talk", "Science Slam": "Science slam",
          "Eröffnungskeynote": "Opening keynote", "Lesung": "Reading", "Vortrag": "Talk", "Bühne": "Stage",
          "Gast": "Guest", "Expertin": "Expert", "Redaktion": "Editorial team", "Kritik": "Review",
          "Radiointerview": "Radio interview", "Buchbesprechung": "Book review", "Bericht": "Report",
@@ -121,10 +122,12 @@ def translate(block, missing):
     block = re.sub(r'(<span class="tl-(?:kicker|desc)">)(.*?)</span>', lookup(LEAD_EN, "LEAD_EN"), block)
     block = re.sub(r'(<span class="(?:meta|tl-outlet)">)(.*?)</span>',
                    lambda m: f'{m.group(1)}{e(meta_en(u(m.group(2))), quote=False)}</span>', block)
+    block = re.sub(r'(class="title"[^>]*>[^<]*, )(' + "|".join(CITIES) + r')<',
+                   lambda m: m.group(1) + CITIES[m.group(2)] + "<", block)
     block = re.sub(r'Alle (\d+) Texte anzeigen', r'Show all \1 texts', block)
     block = re.sub(r'Alle (\d+) anzeigen', r'Show all \1', block)
     block = re.sub(r'aria-label="(\d+) von (\d+)"', r'aria-label="\1 of \2"', block)
-    block = block.replace('<p class="source">Alle Texte auch im <a', '<p class="source">All texts are also in the <a')
+    block = block.replace('<p class="source">Alle Texte auch im <a', '<p class="source">All texts are also available in her <a')
     block = block.replace('>Portfolio auf torial</a>.</p>', '>torial portfolio</a> (in German).</p>')
     for de, en in LABELS:
         block = block.replace(de, en)
