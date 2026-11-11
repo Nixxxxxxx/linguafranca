@@ -22,6 +22,10 @@ LOGOS = {
     "ernst-deutsch-theater": "https://www.ernst-deutsch-theater.de/_assets/52b3d211a4f7093a176c0c5d2004bac7/Images/edt-wortmarke.svg",
     # fuko.nrw.de (Deutscher Fußverkehrskongress) only has the NRW state coat of arms as a logo, which may not be
     # used freely, so that entry is a text badge.
+    "superzart": "https://superzartfestival.de/wp-content/uploads/2024/01/Superzart_Logo_RGB_black.svg",
+    "innovationspreis": "https://der-deutsche-innovationspreis.de/wp-content/uploads/2024/03/Innovationspreis_Logo.jpg",
+    # harbourclub.ch (HarbourClub, Swiss CCO association) blocks scripted downloads (Cloudflare 403, 2026-11-11):
+    # images/logos/harbourclub.png was saved by the user and cropped by hand.
     "bayern-design": "https://bayern-design.de/wp-content/uploads/2022/04/bayern-design-logo-neu.svg",
     "sosafe-signal": COMMONS.format("SoSafe_Logo_1.svg"),
     "ihk-muenchen": COMMONS.format("Logo_IHK_M%C3%BCnchen_und_Oberbayern.svg"),
@@ -40,6 +44,8 @@ LOGOS = {
     "zdf": COMMONS.format("ZDF_logo.svg"),
     "ndr": COMMONS.format("NDR_Logo.svg"),
     "3sat": COMMONS.format("3sat_2019.svg"),
+    # White lettering: after fetching, white pixels were recoloured to #1a1a1a and the image cropped.
+    "scobel": COMMONS.format("Scobel_logo.png"),
     "sz-magazin": COMMONS.format("SZ-Magazin_logo.svg"),
     "stern": COMMONS.format("Stern_Logo_2020.svg"),
     "welt": "https://www.welt.de/assets/images/global/welt_brand-dd869f0cab.png",

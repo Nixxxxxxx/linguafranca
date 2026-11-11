@@ -1,6 +1,6 @@
-"""Rebuilds the "Vorträge" and "Fernsehen & Presse" lists in index.html.
+"""Rebuilds the "Vorträge" and "Presse" lists in index.html.
 
-Edit the VORTRAEGE / MEDIEN lists below (newest first), then run from the project root:
+Edit the VORTRAEGE / MEDIEN lists below (MEDIEN newest first; VORTRAEGE is sorted by date), then run from the project root:
     python -I tools/build_vortraege.py
 Logos live in images/logos/ (fetch new ones with tools/fetch_logos.py). logo=None shows the
 organisation name as a text badge instead. link=None shows the title without a link.
@@ -14,64 +14,81 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# (logo file in images/logos/ or None, organisation, meta line, title, description, link or None)
+# (sort date YYYY-MM-DD, logo file in images/logos/ or None, organisation, meta line, title, description, link or None)
+# The list is sorted by the sort date (newest first) when the page is built, so order here does not matter.
+# Sort dates marked "est." are estimates (the meta line shows no date for them).
 VORTRAEGE = [
-    ("dbvc-coaching27.png", "DBVC", "16. Apr 2027 · Keynote", "Coaching '27, DBVC-Kongress, Erfurt",
+    ("2027-04-16", "dbvc-coaching27.png", "DBVC", "16. Apr 2027 · Keynote", "Coaching '27, DBVC-Kongress, Erfurt",
      "Keynote zum Kongressmotto „Dialog stärken, Demokratie begleiten“", "https://kongress.dbvc.de/dr-franca-parianen/"),
-    ("sosafe-signal.png", "SoSafe", "18. Nov 2026 · Masterclass", "Signal Security Summit, Köln",
+    ("2026-11-18", "sosafe-signal.png", "SoSafe", "18. Nov 2026 · Masterclass", "Signal Security Summit, Köln",
      "„Sicheres Verhalten nachhaltig verankern: Was wir aus der Neurowissenschaft lernen können“",
      "https://signal.sosafe-awareness.com/cologne/agenda/"),
-    (None, "6. Deutscher Fußverkehrskongress", "29. Sep 2026 · Science Slam", "6. Deutscher Fußverkehrskongress, Bielefeld",
+    # Programme page lists "Begrüßung mit einem Science Slam von Franca Parianen", 14:45, Malersaal; festival date 17 Oct 2026.
+    ("2026-10-17", "superzart.svg", "SUPERZART Festival", "17. Okt 2026 · Science Slam",
+     "SUPERZART* Festival, Schauspielhaus Hamburg",
+     "Begrüßung mit einem Science Slam beim Festival „wider die Einsamkeit“", "https://superzartfestival.de/programm/"),
+    ("2026-09-29", None, "6. Deutscher Fußverkehrskongress", "29. Sep 2026 · Eröffnungsimpuls", "6. Deutscher Fußverkehrskongress, Bielefeld",
      "„Warum Menschen zusammenhalten müssen, aber nicht wollen (auch im Straßenverkehr)“",
      "https://www.fuko.nrw.de/referierende/"),
     # The theatre's own page no longer lists the July panel, so the link is nachtkritik's review, which describes it.
-    ("ernst-deutsch-theater.svg", "Ernst Deutsch Theater", "11. Jul 2026 · Podium", "„Timmy – Die Hope stirbt zuletzt“, Ernst Deutsch Theater, Hamburg",
+    ("2026-07-11", "ernst-deutsch-theater.svg", "Ernst Deutsch Theater", "11. Jul 2026 · Podium", "„Timmy – Die Hope stirbt zuletzt“, Ernst Deutsch Theater, Hamburg",
      "Podium nach der Premiere: warum Empathie ein Gesicht und einen Namen braucht",
      "https://nachtkritik.de/nachtkritiken/deutschland/hamburg-schleswig-holstein/hamburg/ernst-deutsch-theater-hamburg/timmy-die-hope-stirbt-zuletzt-ernst-deutsch-theater-hamburg-alexander-kiessinger-montiert-einen-abend-zwischen-pop-und-passion"),
     # Dated 2024 on the user's instruction (the page's description says 2024; its body text says 2025).
-    ("bayern-design.svg", "bayern design", "Okt 2024 · Pitch", "Social Design Days 2024, Nürnberg",
+    ("2024-10-01", "bayern-design.svg", "bayern design", "Okt 2024 · Pitch", "Social Design Days 2024, Nürnberg",
      "Humorvoller Pitch zum Menschen als sozialem Wesen", "https://bayern-design.de/beitrag/her-mit-dem-guten-leben/"),
-    # smmdays.de answered every page with 401 on 2026-11-10, so no link and no logo for now.
-    (None, "Social Media Marketing Days", "Nov 2022 · Eröffnungskeynote", "Social Media Marketing Days",
-     "„83 Milliarden Neuronen gefällt das!“", None),
-    ("youmecon.svg", "YouMeCon", "Okt 2022 · Podium", "YouMeCon",
-     "Podiumsdiskussion: Digitale Medien", "https://youmecon.de/"),
-    ("hercareer.png", "herCAREER", "Okt 2022 · Lesung", "herCAREER Expo, München",
-     "Author Meet & Greet zu „Teilen und Haben“", "https://www.her-career.com/kopf/dr-franca-parianen/"),
-    ("ihk-muenchen.png", "IHK für München und Oberbayern", "Keynote", "11. Bayerischer CSR-Tag",
+    # Added on the user's request although the winners page does not name her. Month from the winners report (Apr 2024).
+    ("2024-04-25", "innovationspreis.png", "Der Deutsche Innovationspreis", "2024 · Keynote",
+     "Der Deutsche Innovationspreis 2024", "Keynote bei der Verleihung des Deutschen Innovationspreises",
+     "https://der-deutsche-innovationspreis.de/die-gewinner-2024/"),
+    # LinkedIn post of 9 Nov 2023 ("Letzte Gelegenheit ..."), hosted at Roche, Basel. harbourclub.ch blocks downloads;
+    # images/logos/harbourclub.png was saved by the user (Downloads\HarbourClub.jpg, cropped).
+    ("2023-11-15", "harbourclub.png", "HarbourClub", "Nov 2023 · Speakerin", "Harbour Symposium 2023, Basel",
+     "Symposium des HarbourClub, des Netzwerks der Kommunikationschefs, zu Gast bei Roche",
+     "https://www.linkedin.com/posts/harboursymposium23-ugcPost-7128403916077064192-DXwM/"),
+    # Meta "Impulsvortrag" on the user's instruction (the IHK programme calls it "Science Slam mit Dr. Franca Parianen").
+    ("2023-07-07", "ihk-muenchen.png", "IHK für München und Oberbayern", "7. Jul 2023 · Impulsvortrag",
+     "10. IHK-Unternehmerinnentag, München", "Impulsvortrag beim Unternehmerinnentag der IHK München",
+     "https://www.ihk-muenchen.de/ueber-uns/veranstaltungsarchiv/unternehmerinnentag/unternehmerinnentag-2023.html"),
+    # est.: the IHK's 2023 annual report mentions the 11th CSR-Tag.
+    ("2023-06-01", "ihk-muenchen.png", "IHK für München und Oberbayern", "Keynote", "11. Bayerischer CSR-Tag",
      "„Warum wir zukünftig stärker zusammenhalten müssen, aber nicht wollen“",
      "https://www.youtube.com/watch?v=9HIz-aX5oEc"),
-    ("frankfurter-zukunftskongress.jpg", "Frankfurter Zukunftskongress", "Feb 2021 · Keynote",
+    # smmdays.de answered every page with 401 on 2026-11-10, so no link and no logo for now.
+    ("2022-11-01", None, "Social Media Marketing Days", "Nov 2022 · Eröffnungskeynote", "Social Media Marketing Days",
+     "„83 Milliarden Neuronen gefällt das!“", None),
+    ("2022-10-02", "hercareer.png", "herCAREER", "Okt 2022 · Lesung", "herCAREER Expo, München",
+     "Author Meet & Greet zu „Teilen und Haben“", "https://www.her-career.com/kopf/dr-franca-parianen/"),
+    # est.: panel on "Teilen und Haben" (book 2021), so 2022.
+    ("2022-06-01", "kulturelle-landpartie.png", "Kulturelle Landpartie", "Podium", "Kulturelle Landpartie",
+     "Podiumsdiskussion: Teilen und Haben",
+     "https://www.kulturelle-landpartie.de/personen.html?action=&order=punkte_dn&s_type=&s_string="),
+    ("2021-06-01", "visitberlin.svg", "visitBerlin", "2021 · Speakerin", "visitBerlin BEST-Ival", "Speakerin",
+     "https://convention.visitberlin.de/speaker-beim-bestival-2021"),
+    ("2021-02-01", "frankfurter-zukunftskongress.jpg", "Frankfurter Zukunftskongress", "Feb 2021 · Keynote",
      "Frankfurter Zukunftskongress",
      "Keynote gemeinsam mit Richard David Precht: Zusammenleben mit 8 Milliarden Gehirnen",
      "https://www.youtube.com/watch?v=Qd2WeihcwtE"),
-    ("visitberlin.svg", "visitBerlin", "2021 · Speakerin", "visitBerlin BEST-Ival", "Speakerin",
-     "https://convention.visitberlin.de/speaker-beim-bestival-2021"),
-    ("kulturelle-landpartie.png", "Kulturelle Landpartie", "Podium", "Kulturelle Landpartie",
-     "Podiumsdiskussion: Teilen und Haben",
-     "https://www.kulturelle-landpartie.de/personen.html?action=&order=punkte_dn&s_type=&s_string="),
-    ("zeit-stiftung.png", "ZEIT-Stiftung", "Podium", "ZEIT-Stiftung",
+    # est.: the "Zukunft Mensch" series ran 2019-2021. The programme brochure that listed this talk now returns 404.
+    ("2020-03-01", "polytechnische.svg", "Polytechnische Gesellschaft", "Vortrag", "Polytechnische Gesellschaft, Frankfurt",
+     "Vortragsreihe „Zukunft Mensch“", None),
+    # Date from the tweet ID (29 Nov 2019).
+    ("2019-11-29", "zeit-stiftung.png", "ZEIT-Stiftung", "Nov 2019 · Podium", "ZEIT-Stiftung",
      "„Was hält unsere Gesellschaft zusammen? Miteinander teilen“, mit Steffen Mau und Robert Habeck",
      "https://twitter.com/HoltzbrinckBLN/status/1200399498322817026"),
-    # b2bvertriebskongress.at did not respond on 2026-11-10, so no logo.
-    (None, "B2B-Vertriebskongress", "Keynote", "B2B-Vertriebskongress, Wien",
-     "Lernen vom ältesten sozialen Netzwerk der Welt",
-     "https://industriemagazin.at/a/das-war-der-1-b2b-vertriebskongress?img=40416"),
-    ("learntec.png", "LEARNTEC", "2019 · Keynote", "LEARNTEC, Karlsruhe",
+    ("2019-01-29", "learntec.png", "LEARNTEC", "2019 · Keynote", "LEARNTEC, Karlsruhe",
      "Soziale Bedürfnisse motivieren uns zum Lernen",
      "https://www.haufe.de/personal/hr-management/franca-parianen-soziale-beduerfnisse-motivieren-zum-lernen_80_484000.html"),
-    # The programme brochure that listed this talk now returns 404.
-    ("polytechnische.svg", "Polytechnische Gesellschaft", "Vortrag", "Polytechnische Gesellschaft, Frankfurt",
-     "Vortragsreihe „Zukunft Mensch“", None),
-    ("../hormone_gesteuert.png", "Hormongesteuert", "Bühne", "Wissens-Comedy-Premiere",
-     "Hormongesteuert? Wie Männer und Frauen beeinflusst werden", "https://www.youtube.com/watch?v=TxC1amupOII"),
-    ("ideenexpo.svg", "IdeenExpo", "2017 · Science Slam", "IdeenExpo, Hannover", "Science Slam, Vize-Gewinnerin",
+    # Report published 26 Sep 2018. b2bvertriebskongress.at did not respond on 2026-11-10, so no logo.
+    ("2018-09-20", None, "B2B-Vertriebskongress", "2018 · Keynote", "B2B-Vertriebskongress, Wien",
+     "Lernen vom ältesten sozialen Netzwerk der Welt",
+     "https://industriemagazin.at/a/das-war-der-1-b2b-vertriebskongress?img=40416"),
+    ("2017-06-01", "ideenexpo.svg", "IdeenExpo", "2017 · Science Slam", "IdeenExpo, Hannover", "Science Slam, Vize-Gewinnerin",
      "https://www.ideenexpo.de/content/franca-parianen-lesemann-gewinnt-zweiten-science-slam-im-pavillon-hannover"),
-    ("scienceslam.svg", "Science Slam", "2014 · Science Slam", "Deutsche Meisterschaft im Science Slam",
+    ("2014-12-01", "scienceslam.svg", "Science Slam", "2014 · Science Slam", "Deutsche Meisterschaft im Science Slam",
      "Science Slam über die Neurowissenschaft des Mitgefühls", "https://www.youtube.com/watch?v=udUKDVCFc_U"),
-    ("scienceslam.svg", "Science Slam", "Science Slam", "Science Slam Berlin",
-     "Seit 2014 auf Science-Slam-Bühnen", None),
 ]
+# Removed on the user's request (2026-11-11): YouMeCon, Wissens-Comedy-Premiere, Science Slam Berlin.
 
 MEDIEN = [
     ("3sat.png", "3sat", "3sat · 26. Feb 2026 · Gast", "NANO Talk: Neues Sprechen – wie uns unsere Sprache verrät",
@@ -95,6 +112,15 @@ MEDIEN = [
     ("welt.png", "Welt", "Welt · Interview", "Sie hat die beste Antwort auf „Du hast wohl deine Tage“",
      "Interview: Auch Männer sind hormongesteuert",
      "https://www.welt.de/icon/iconista/article206686947/Auch-Maenner-sind-hormongesteuert-Interview-mit-Wissenschaftlerin-Franca-Parianen.html"),
+    # Added 2026-11-11 on the user's request; titles from the user (brigitte.de, imdb.com and harbourclub.ch block the
+    # fetch tools). Scobel logo: Wikimedia Commons File:Scobel_logo.png (white text recoloured to #1a1a1a).
+    (None, "Brigitte", "Brigitte", "Kooperieren als Gesellschaft: Frauenfreundschaften sind buchstäblich lebensrettend",
+     "Über Frauenfreundschaften und Kooperation",
+     "https://www.brigitte.de/aktuell/gesellschaft/franca-parianen--kooperieren-als-gesellschaft-13802040.html"),
+    ("scobel.png", "scobel", "3sat · Gast", "Scobel: Herz intakt?", "Gast bei Gert Scobel",
+     "https://www.imdb.com/de/title/tt29742774/characters/nm10338053/"),
+    ("harbourclub.png", "HarbourClub", "HarbourClub · Bericht", "Adrenalin, Herzklopfen und geweitete Pupillen",
+     "Beitrag des HarbourClub", "https://www.harbourclub.ch/de/newsdetail/adrenalin-herzklopfen-und-geweitete-pupillen"),
     # Interviews and podcasts found by web search on 2026-11-10 (newest first). Psychologie Heute is a book review, added on
     # the user's request. Skipped: NDR "Science Slam im Podcast" (404), Frankfurter Zukunftskongress newsroom interview
     # (domain now belongs to someone else), Sheconomy (reprint of the herCAREER interview).
@@ -142,10 +168,10 @@ MEDIEN = [
 
 
 # Highlights shown as cards (matched by title start); everything else is listed behind "Alle … anzeigen".
-VORTRAEGE_HIGHLIGHTS = ["Coaching", "Signal Security", "Frankfurter Zukunftskongress", "ZEIT-Stiftung", "LEARNTEC",
-                        "Deutsche Meisterschaft"]
+VORTRAEGE_HIGHLIGHTS = 9  # Vorträge: the 9 newest are cards, so the whole section reads newest to oldest
 MEDIEN_HIGHLIGHTS = ["NANO Talk", "Eckart von Hirschhausen", "Markus Lanz", "Die Liebe ist eine Naturgewalt",
-                     "Wie der Zyklus", "Sie hat die beste Antwort"]
+                     "Wie der Zyklus", "Sie hat die beste Antwort", "Kooperieren als Gesellschaft", "Scobel: Herz",
+                     "Adrenalin"]
 
 
 def title_html(title, link):
@@ -157,12 +183,12 @@ def title_html(title, link):
 def category(name, items, keys, extra=""):
     """Highlight cards (logo chip, meta, title, description), then the rest as a compact list behind a toggle."""
     e, ind = html.escape, " " * 16
-    hi = []
+    if isinstance(keys, int):
+        keys = [it[3] for it in items[:keys]]
     for k in keys:
-        match = [it for it in items if it[3].startswith(k)]
-        if not match:
+        if not any(it[3].startswith(k) for it in items):
             sys.exit(f"Highlight '{k}' not found in {name}")
-        hi.append(match[0])
+    hi = [it for it in items if any(it[3].startswith(k) for k in keys)]  # keeps list (date) order
     rest = [it for it in items if it not in hi]
     out = [f'{ind}<div class="category"{extra}>', f'{ind}    <h3>{e(name)}</h3>', f'{ind}    <ul class="hcards">']
     for logo, org, meta, title, desc, link in hi:
@@ -181,7 +207,7 @@ def category(name, items, keys, extra=""):
 
 
 def main():
-    missing = [l for l, *_ in VORTRAEGE + MEDIEN if l and not (ROOT / "images" / "logos" / l).exists()]
+    missing = [l for l, *_ in [v[1:] for v in VORTRAEGE] + MEDIEN if l and not (ROOT / "images" / "logos" / l).exists()]
     if missing:
         sys.exit(f"Missing logo files in images/logos/: {missing}")
     page = ROOT / "index.html"
@@ -189,11 +215,14 @@ def main():
     start, end = "<!-- VORTRAEGE:START -->", "<!-- VORTRAEGE:END -->"
     if start not in s or end not in s:
         sys.exit("Markers not found in index.html")
-    body = (category("Vorträge", VORTRAEGE, VORTRAEGE_HIGHLIGHTS) + "\n\n"
-            + category("Fernsehen & Presse", MEDIEN, MEDIEN_HIGHLIGHTS, ' id="medien"'))
+    vortraege = [v[1:] for v in sorted(VORTRAEGE, key=lambda v: v[0], reverse=True)]
+    body = (category("Vorträge", vortraege, VORTRAEGE_HIGHLIGHTS) + "\n\n"
+            + category("Presse", MEDIEN, MEDIEN_HIGHLIGHTS, ' id="medien"'))
     a, b = s.index(start) + len(start), s.index(end)
     page.write_text(s[:a] + "\n" + body + "\n                " + s[b:], encoding="utf-8")
-    print(f"Built {len(VORTRAEGE)} Vorträge and {len(MEDIEN)} Fernsehen & Presse entries.")
+    print(f"Built {len(VORTRAEGE)} Vorträge and {len(MEDIEN)} Presse entries.")
+    import runpy  # keep the English page (en/index.html) in sync
+    runpy.run_path(str(ROOT / "tools" / "build_en.py"), run_name="__main__")
 
 
 if __name__ == "__main__":

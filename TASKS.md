@@ -145,6 +145,62 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - design-variants/ stays local (gitignored); its generators are no longer the source of the live CSS. Edit
     css/site-style.css directly from now on.
 
+- 2026-11-11 **Big content edit list from the user: done locally, NOT committed or pushed** (waiting for the user's OK).
+  - Hero "Dr." now in the display sans font (.h1-pre). About: "Über mich" eyebrow and "Kurzbio" cite removed; new bio
+    (user's text, proofread: Bestsellerautorin, Studium der Neurowissenschaften, Science-Slammerin, «» quotes,
+    "ins Französische und Koreanische", "in Print und Fernsehen", "im taz-Ressort Zukunft", second "regelmäßig" dropped,
+    garbled "Für ihre Vorträge Speakerin erhielt die Speakerin" fixed). Fact boxes: Promotion / Ausgezeichnet /
+    Bestseller + Rowohlt Verlag / Wissenschafts&shy;kommunikatorin. Photo images/sartorius-ndr-2024.jpg (from
+    Downloads\grafik.png, 1200px) under the fact boxes, caption "Verleihung des Sartorius und NDR Sachbuchpreises 2024".
+  - Vorträge: tools/build_vortraege.py entries now start with a sort date and are sorted newest first; the 9 newest are
+    cards (VORTRAEGE_HIGHLIGHTS = 9), rest in the list. New: SUPERZART* Festival (17 Oct 2026, Schauspielhaus Hamburg),
+    Deutscher Innovationspreis 2024, Harbour Symposium 2023 Basel (text badge: harbourclub.ch blocks downloads; user
+    could save the logo as images/logos/harbourclub.png), 10. IHK-Unternehmerinnentag (7 Jul 2023, "Impulsvortrag" per
+    user; IHK page says Science Slam). Removed YouMeCon, Wissens-Comedy-Premiere, Science Slam Berlin. Fußverkehrskongress
+    = Eröffnungsimpuls. Estimated sort dates (no date shown): CSR-Tag 2023, Kulturelle Landpartie 2022, Polytechnische 2020.
+    Intro text "Keynotes und andere Auftritte (exemplarisch)". "Fernsehen & Presse" → "Presse".
+  - Presse: + Brigitte and IMDb entries with PLACEHOLDER titles (both sites block the fetch tools, Chrome extension
+    not connected): ask the user for the real headline / show name.
+  - Lead text title "dümmer" → "denkfauler" (update_texte.py LEAD + index.html; taz URL unchanged).
+  - Email franca@parianen.com everywhere on index.html (incl. JSON-LD). Contact: h2 "…Podiumsdiskussion anfragen",
+    intro paragraph removed, button label "Anfrage". Hero "Anfrage senden" icon = paper plane.
+  - User's answers (same day), all applied: prize = "LifeScience Xplained Award 2024 | Sartorius-Preis für neue
+    Kommunikation" (fact box + bio); photo credit "Foto: Sartorius AG"; Brigitte title „Kooperieren als Gesellschaft:
+    Frauenfreundschaften sind buchstäblich lebensrettend“; IMDb link = "Scobel: Herz intakt?" with scobel logo
+    (images/logos/scobel.png, Commons, recoloured dark); Harbour Club logo images/logos/harbourclub.png (from
+    Downloads\HarbourClub.jpg) on the Vorträge card; new Presse entry HarbourClub „Adrenalin, Herzklopfen und
+    geweitete Pupillen“ (harbourclub.ch/de/newsdetail/…); Innovationspreis = Keynote; impressum.html email →
+    franca@parianen.com. Presse now has 9 cards (+ Brigitte, Scobel, HarbourClub).
+  - Menu item "Über mich" → "Biographie" in index.html, impressum.html, 404.html (anchor #ueber-mich kept so old links work).
+  - "Zu erleben bei" strip: Keynotes, Impulse, Lesungen, Science Slams, Interviews, Fernsehen.
+  - New section "Vortragsthemen" (#themen, between Bücher and Vorträge, nav link added): 5 topics as <details>
+    accordions (title + subtitle visible, text opens on click), CSS block "Vortragsthemen" at the end of
+    css/site-style.css. Backgrounds re-alternated: themen plain, Vorträge section-alt, Texte plain. Text = user's,
+    proofread (list of fixes given to the user in chat on 2026-11-11). User confirmed "Wer Wissen abspeichert" is
+    intended; topic 5 subtitle changed to "86 Milliarden Neuronen gefällt das" (SMM Days 2022 entry keeps its original
+    title "83 Milliarden…").
+  - SEO for "speaker + topic / neuroscience" searches: title "Dr. Franca Parianen – Keynote-Speakerin
+    Neurowissenschaft", new meta/OG description naming the 5 topics; JSON-LD Person: jobTitle Keynote-Speakerin first,
+    topic keywords in knowsAbout (+ Gesellschaft, Transformation, Nachhaltigkeit on the user's request; they replaced Sozialpsychologie/Politikwissenschaft), alumniOf (Utrecht, Münster, Twente per Wikipedia; + Jacobs University Bremen and MPI für Kognitions- und Neurowissenschaften Leipzig per user), award, sameAs + Wikipedia
+    (de.wikipedia.org/wiki/Franca_Parianen), makesOffer = 5 keynote Services; hero eyebrow "Keynote-Speakerin";
+    Vortragsthemen intro sentence (added by me, user may reword); topic titles are now <h3> inside <summary>;
+    sitemap lastmod 2026-11-11 + award image.
+  - **English version** (user: open to talks abroad, fluent in English): `en/index.html` (= parianen.com/en/), my
+    translation of all static text (British spelling; book/article/event titles stay German, books get an English gloss
+    in the bio; added sentence "She speaks in English and German, in Germany and internationally."). DE | EN switch in
+    both headers (.lang), hreflang de/en/x-default in both heads + sitemap.xml, og:locale pairs, English JSON-LD
+    (same Person @id). German page: Vortragsthemen intro now "Auf Deutsch oder Englisch, in Deutschland und
+    international."; JSON-LD knowsLanguage de/en, areaServed removed (user: open to all countries).
+    **How the EN lists stay in sync:** tools/build_en.py copies the VORTRAEGE and TEXTE blocks from index.html into
+    en/index.html, translating labels/dates and descriptions via DESC_EN / LEAD_EN; it stops and names any entry
+    without an English text. build_vortraege.py and update_texte.py call it automatically at the end.
+    Everything else in en/index.html is edited by hand: any change to German static text must be mirrored there.
+    js/site.js picks pause/play labels by <html lang>. Impressum stays German-only (footer link says "(German)").
+    Gotcha: the DE/EN links are "./en/" and "../", which open a folder listing when previewing via file://;
+    use `python -m http.server 8000` to test the switch locally.
+  - Next: user reviews locally, then commit + push on their OK. After going live: Search Console (submit sitemap,
+    request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
+
 ## Decisions (and why)
 - **No Bootstrap, jQuery, Font Awesome or Google Fonts on the pages.** System fonts plus inline SVG icons.
   Reasons: no third-party requests (German GDPR issues with Google Fonts and CDNs), faster, nothing to break.

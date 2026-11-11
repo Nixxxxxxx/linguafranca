@@ -27,7 +27,7 @@ VISIBLE = 8  # rows shown below the lead before the "Alle Texte" toggle
 LEAD = [
     {"id": "taz-6133816", "url": "https://taz.de/KI-und-Automatisierung-machen-uns-duemmer-ist-das-wirklich-so-schlimm/!6133816/",
      "outlet": "taz", "kicker": "Cognitive Offloading", "date": "Dez 2025",
-     "title": "KI und Automatisierung machen uns dümmer, ist das wirklich so schlimm?",
+     "title": "KI und Automatisierung machen uns denkfauler, ist das wirklich so schlimm?",
      "desc": "Wir nutzen Navis und fragen ChatGPT nach Rezepten. Das kann zu weniger kognitiver Leistung führen. "
              "Doch wie können wir die Helfer produktiv einsetzen?"},
     {"id": "taz-6214458", "url": "https://taz.de/Bindungsverhalten/!6214458/", "outlet": "taz",
@@ -207,6 +207,8 @@ def main():
     s = s[:a] + "\n" + build(items) + "\n                " + s[b:]
     page.write_text(s, encoding="utf-8")
     print(f"Texte section rebuilt: {len(LEAD) + len(items)} texts ({len(LEAD)} from LEAD, {len(EXTRA)} from EXTRA).")
+    import runpy  # keep the English page (en/index.html) in sync
+    runpy.run_path(str(ROOT / "tools" / "build_en.py"), run_name="__main__")
 
 
 if __name__ == "__main__":
