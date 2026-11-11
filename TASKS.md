@@ -202,6 +202,14 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     with phone system fonts); desktop outline letter-spacing loosened to -0.02em so outlines no longer overlap.
   - 2026-11-11 Phone menu wraps onto two lines (no sideways scrolling, all items visible); header shrinks below 380px.
     Both mobile fixes pushed 2026-11-11 (user OK); user checks on their phone.
+  - 2026-11-11 Phone: hero photo credit moved from top right (over the face) to bottom right, above the text.
+  - 2026-11-11 Biography: all paragraphs same size/colour (first paragraph was a larger intro). 
+  - 2026-11-11 English page rewritten less literally on the user's request (hero, quote "Humour, brains and footnotes",
+    bio, facts, books intro, topics intro + all 5 topics). User then tweaked: quote "Humour, brains and footnotes", "Yet adrenaline…",
+    "better to lose your composure than your ability to respond", "…in a clash of 8 billion".
+  - 2026-11-11 Phone menu back to one scrollable row (user: wrapping didn't fit at a glance either), now with edge fade
+    and coral arrow buttons (js/site.js wraps .nav in .nav-wrap, toggles .more-left/.more-right).
+  - Pushed 2026-11-11 (user OK): caption fix, bio size fix, English rewrite + tweaks, phone menu arrows.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 

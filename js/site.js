@@ -31,3 +31,28 @@
   if (still) { user = true; btn.textContent = '▶'; }
   show(0);
 })();
+
+/* Phone menu: when the links don't fit, fade the cut-off edge and show arrow buttons that scroll the row. */
+(function () {
+  var nav = document.querySelector('.site-header .nav'); if (!nav) return;
+  var wrap = document.createElement('div'); wrap.className = 'nav-wrap';
+  nav.parentNode.insertBefore(wrap, nav); wrap.appendChild(nav);
+  function arrow(dir) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'nav-arrow ' + dir;
+    b.tabIndex = -1; b.setAttribute('aria-hidden', 'true');
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="' +
+      (dir === 'right' ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7') + '"/></svg>';
+    b.addEventListener('click', function () { nav.scrollBy({ left: (dir === 'right' ? 1 : -1) * nav.clientWidth * 0.6, behavior: 'smooth' }); });
+    wrap.appendChild(b); return b;
+  }
+  var left = arrow('left'), right = arrow('right');
+  function update() {
+    var max = nav.scrollWidth - nav.clientWidth, x = nav.scrollLeft;
+    var l = x > 4, r = x < max - 4;
+    nav.classList.toggle('more-left', l); nav.classList.toggle('more-right', r);
+    left.hidden = !l; right.hidden = !r;
+  }
+  nav.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
