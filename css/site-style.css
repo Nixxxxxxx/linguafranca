@@ -134,7 +134,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
 .hero h1 { font-size: clamp(3.4rem, 9.2vw, 8.6rem); line-height: .9; letter-spacing: -0.045em; margin: 0 0 30px; }
 .h1-pre { display: block; font-family: var(--display); font-weight: 800; font-size: .32em; letter-spacing: -0.02em; color: var(--ink-soft); margin-bottom: .12em; }
 .h1-line { display: block; }
-.h1-accent { color: transparent; -webkit-text-stroke: 2px var(--ink); }
+.h1-accent { color: transparent; -webkit-text-stroke: 2px var(--ink); letter-spacing: -0.02em; }
 @supports not (-webkit-text-stroke: 2px #fff) { .h1-accent { color: var(--accent); } }
 .lead { font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--ink-soft); max-width: 31em; margin: 0 0 40px; line-height: 1.6; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
@@ -312,9 +312,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
     .contact .wrap { grid-template-columns: 1fr; gap: 56px; }
 }
 @media (max-width: 860px) {
-    html { scroll-padding-top: 116px; }
+    html { scroll-padding-top: 140px; }
     .site-header .wrap { flex-wrap: wrap; gap: 4px 16px; min-height: 0; padding-top: 12px; padding-bottom: 10px; }
-    .nav { order: 3; width: 100%; gap: 22px; overflow-x: auto; scrollbar-width: none; padding: 6px 0 4px; }
+    .nav { order: 3; width: 100%; flex-wrap: wrap; gap: 6px 20px; padding: 8px 0 4px; } /* all items visible, no sideways scrolling */
     .nav::-webkit-scrollbar { display: none; }
     .nav a { white-space: nowrap; }
     .header-cta { padding: 8px 14px; font-size: .84rem; }
@@ -325,7 +325,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
     .hero-photo { object-position: 60% 22%; }
     .hero-media figcaption { top: 14px; bottom: auto; }
     .hero-inner { margin-top: -40px; padding-top: 0; padding-bottom: 72px; }
-    .h1-accent { -webkit-text-stroke-width: 1.5px; }
+    .h1-accent { color: var(--accent); -webkit-text-stroke: 0; letter-spacing: -0.03em; } /* outline looks broken with phone system fonts */
 
     .strip .wrap { flex-direction: column; align-items: flex-start; gap: 16px; }
     .strip ul { gap: 8px 22px; }
@@ -548,3 +548,5 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
 .lang a[aria-current] { color: var(--accent); }
 @media (max-width: 860px) { .lang { margin: 0 0 0 auto; } }
 @media (max-width: 420px) { .site-header .wrap { column-gap: 8px; } .lang a { padding: 6px 4px; } .header-cta { padding: 8px 12px; } }
+@media (max-width: 420px) { .nav { gap: 4px 16px; } .nav a { font-size: .9rem; } }
+@media (max-width: 380px) { .brand { font-size: 1.02rem; } .header-cta { padding: 7px 10px; font-size: .78rem; } .lang { font-size: .76rem; } }

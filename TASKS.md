@@ -198,6 +198,10 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     js/site.js picks pause/play labels by <html lang>. Impressum stays German-only (footer link says "(German)").
     Gotcha: the DE/EN links are "./en/" and "../", which open a folder listing when previewing via file://;
     use `python -m http.server 8000` to test the switch locally.
+  - 2026-11-11 Hero surname: on phones (≤860px) "Parianen" is solid coral instead of outline (text-stroke looked broken
+    with phone system fonts); desktop outline letter-spacing loosened to -0.02em so outlines no longer overlap.
+  - 2026-11-11 Phone menu wraps onto two lines (no sideways scrolling, all items visible); header shrinks below 380px.
+    Both mobile fixes pushed 2026-11-11 (user OK); user checks on their phone.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
