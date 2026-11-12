@@ -224,6 +224,8 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     Committed locally, NOT pushed yet.
   - 2026-11-12 English bio: translation sentence now "Her books have been translated from South Korea to France." (user's wording).
     Committed locally, NOT pushed yet.
+  - 2026-11-12 English hero intro: "bestselling author (Rowohlt)" → "bestselling author at Rowohlt publishing house" (user).
+    JSON-LD description still says "(Rowohlt)". Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
