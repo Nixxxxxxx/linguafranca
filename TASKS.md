@@ -217,7 +217,7 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     Pushed 2026-11-11 (commit d769b61, user OK), live. (ec997e9 sat queued ~1 h during a GitHub Actions/Pages outage, then deployed by itself.)
   - 2026-11-12 Formats strip: "Zu erleben bei" / "Book her for" label removed on both pages (.strip-label CSS removed).
     Phones (≤860px): the formats are one row that scrolls sideways (full width, faded edges, hidden scrollbar).
-    Committed locally, NOT pushed yet.
+    Pushed 2026-11-12 (user OK).
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
