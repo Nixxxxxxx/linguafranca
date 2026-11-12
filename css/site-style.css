@@ -341,7 +341,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
     :root { --gutter: 16px; }
     body { font-size: 16px; }
     .hero h1 { font-size: clamp(3rem, 17vw, 4.4rem); }
-    .btn-xl { padding: 16px 22px; font-size: 1rem; width: 100%; justify-content: center; }
+    .btn-xl { padding: 16px 22px; font-size: 1rem; width: 100%; justify-content: flex-start; }
     .btn-xl .ico:last-child { margin-left: auto; }
     .btn-xl .ico:first-child { margin-right: 0; }
     .hero-actions { gap: 10px; }

@@ -233,6 +233,8 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     is an outline button, DE/EN active = off-white, menu arrow = plain white chevron, hero eyebrow off-white without the
     pulsing dot. Only the surname and the big hero CTA stay coral. Desktop unchanged. CSS block at the end of
     site-style.css. Pushed 2026-11-12 (user OK).
+  - 2026-11-12 Phone hero buttons: "Anfrage senden" and "Zu den Büchern" both left-aligned (icon + text at the same
+    spot; arrow stays right). Was: one left, one centred. Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
