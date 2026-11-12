@@ -235,6 +235,9 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     site-style.css. Pushed 2026-11-12 (user OK).
   - 2026-11-12 Phone hero buttons: "Anfrage senden" and "Zu den Büchern" both left-aligned (icon + text at the same
     spot; arrow stays right). Was: one left, one centred. Committed locally, NOT pushed yet.
+  - 2026-11-12 English topics intro: "Keynotes and short talks drawn from brain research – entertaining and
+    evidence-based." ("for conferences, companies and stages of every kind" dropped). German intro unchanged.
+    Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
