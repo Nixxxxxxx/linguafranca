@@ -229,6 +229,10 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - 2026-11-12 English page edits (user): "master’s degree in neuroscience"; new Max Planck / science slam sentence;
     "Berlin-based creator"; books intro now "About humans’ extraordinary social abilities… Available in Russian, French,
     Polish and Korean." German page not changed. Pushed 2026-11-12 (user OK).
+  - 2026-11-12 Phone first screen calmer (user: "cramped, lots of bright orange"): on ≤860px the header "Anfrage senden"
+    is an outline button, DE/EN active = off-white, menu arrow = plain white chevron, hero eyebrow off-white without the
+    pulsing dot. Only the surname and the big hero CTA stay coral. Desktop unchanged. CSS block at the end of
+    site-style.css. Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
