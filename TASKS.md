@@ -220,6 +220,8 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     Pushed 2026-11-12 (user OK).
   - 2026-11-12 Vortragsthemen reordered on both pages (user): 01 Das soziale Gehirn, 02 Resilienz, 03 KI und Gehirn,
     04 Arbeit und Motivation, 05 Digitalisierung. Committed locally, NOT pushed yet.
+  - 2026-11-12 English bio: qualifiers "including" (Max Planck) and "roughly:" (book title gloss) removed (user).
+    Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
