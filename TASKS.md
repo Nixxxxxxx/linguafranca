@@ -218,6 +218,8 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
   - 2026-11-12 Formats strip: "Zu erleben bei" / "Book her for" label removed on both pages (.strip-label CSS removed).
     Phones (≤860px): the formats are one row that scrolls sideways (full width, faded edges, hidden scrollbar).
     Pushed 2026-11-12 (user OK).
+  - 2026-11-12 Vortragsthemen reordered on both pages (user): 01 Das soziale Gehirn, 02 Resilienz, 03 KI und Gehirn,
+    04 Arbeit und Motivation, 05 Digitalisierung. Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
