@@ -142,10 +142,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
 /* ---------- Strip ---------- */
 .strip { background: var(--accent); color: var(--accent-ink); }
 .strip .wrap { display: flex; align-items: center; gap: 32px; padding-top: 22px; padding-bottom: 22px; }
-.strip-label {
-    margin: 0; flex: none; font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .18em;
-    padding: 6px 14px; border: 2px solid var(--accent-ink); border-radius: 999px;
-}
 .strip ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 26px; }
 .strip li { display: inline-flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 800; font-size: clamp(1.05rem, 1.45vw, 1.25rem); letter-spacing: -0.01em; white-space: nowrap; }
 .strip li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-ink); flex: none; }
@@ -327,8 +323,16 @@ h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.05; m
     .hero-inner { margin-top: -40px; padding-top: 0; padding-bottom: 72px; }
     .h1-accent { color: var(--accent); -webkit-text-stroke: 0; letter-spacing: -0.03em; } /* outline looks broken with phone system fonts */
 
-    .strip .wrap { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .strip ul { gap: 8px 22px; }
+    /* Phone: formats in one row that scrolls sideways; full screen width, edges fade */
+    .strip .wrap { padding-left: 0; padding-right: 0; }
+    .strip ul {
+        flex-wrap: nowrap; gap: 22px; width: 100%; overflow-x: auto; overscroll-behavior-x: contain;
+        padding: 0 var(--gutter); scroll-padding: 0 var(--gutter); scroll-snap-type: x proximity; scrollbar-width: none;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+        mask-image: linear-gradient(to right, transparent, #000 var(--gutter), #000 calc(100% - var(--gutter)), transparent);
+    }
+    .strip ul::-webkit-scrollbar { display: none; }
+    .strip li { scroll-snap-align: start; }
     .section { padding: 88px 0; }
     .section-head { margin-bottom: 44px; }
     .appearance { grid-template-columns: 42% 1fr; gap: 20px; }

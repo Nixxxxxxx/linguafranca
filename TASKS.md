@@ -215,6 +215,9 @@ lingua-franca.eu). **Pushing to `main` publishes the live site.**
     Overton window; English city names in event titles (CITIES in build_en.py); WORDS "Science Slam" → "Science slam";
     ~15 wording fixes in topics/bio/cards/lead teasers. Book title now ends with "?" in bio + fact box on BOTH pages.
     Pushed 2026-11-11 (commit d769b61, user OK), live. (ec997e9 sat queued ~1 h during a GitHub Actions/Pages outage, then deployed by itself.)
+  - 2026-11-12 Formats strip: "Zu erleben bei" / "Book her for" label removed on both pages (.strip-label CSS removed).
+    Phones (≤860px): the formats are one row that scrolls sideways (full width, faded edges, hidden scrollbar).
+    Committed locally, NOT pushed yet.
   - Next (after going live, owner's to-dos): Search Console (submit sitemap,
     request indexing), Wikipedia "Weblinks" → parianen.com, speakerinnen.org + agency profiles → parianen.com.
 
